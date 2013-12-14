@@ -6,7 +6,6 @@ class GameImp
 
 public:
 
-
 	// Construcotrs / destructor
 	GameImp( );
 	~GameImp( );
