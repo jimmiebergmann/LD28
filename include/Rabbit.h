@@ -1,9 +1,9 @@
 #ifndef GAME_RABBIT_H
 #define GAME_RABBIT_H
 
-#include <Entitiy.h>
+#include <Entity.h>
 
-#include <SFML\Graphics.hpp>
+#include <SFML\System\Vector2.hpp>
 
 class Rabbit : public Entity
 {
@@ -22,6 +22,7 @@ public:
 	virtual Entity::eType GetType() const;
 private:
 
+	sf::Vector2f m_position;
 
 };
 
