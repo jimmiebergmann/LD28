@@ -1,0 +1,22 @@
+git status - Kolla git statusen, ändringar osv(kolla ofta)
+git add . - Lägger till filer vi vill kommita
+git commit -m "" - Skapar en kommit
+git push - Pushar ändrignarna till servern
+git pull - Pullar ändringarna till servern
+
+
+// Exempel
+git status
+git add .
+git commit -m "Ett medelande haar"
+git push
+
+
+// Vid konflikt (kommita alltid innan)
+git status
+git add .
+git pull
+... Fixa konflikter i visual studio
+git add .
+git commit -m "merged conflict"
+git push
