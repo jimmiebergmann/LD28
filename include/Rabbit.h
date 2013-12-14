@@ -23,6 +23,7 @@ public:
 private:
 
 	sf::Vector2f m_position;
+	sf::Sprite * m_pSprite;
 
 };
 

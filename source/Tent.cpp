@@ -5,7 +5,10 @@
 #include <MemoryLeak.h>
 
 Tent::Tent(const sf::Vector2f p_position) :
-	m_position(p_position) {
+	m_position(p_position),
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Tent.png"))) 
+{
+	m_pSprite->setPosition(m_position);
 }
 
 Tent::~Tent()
@@ -34,6 +37,5 @@ Entity::eType Tent::GetType() const
 
 sf::Sprite * Tent:: GetSprite( ) const
 {
-	sf::Sprite * pSprite = new sf::Sprite(*Resources::GetTexture("Tent.png"));
-	return pSprite;
+	return m_pSprite;
 }
