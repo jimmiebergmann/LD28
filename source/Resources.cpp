@@ -51,10 +51,10 @@ sf::Texture * Resources::GetTexture( const std::string &filename )
 		std::cout << "Failed to load sound file." << std::endl;
 		return NULL;
 	} 
-	else 
-	{
-		return texture;
-	}
+	
+	s_Textures[filename] = texture;
+	return texture;
+	
 }
 
 void Resources::UnloadSounds()
@@ -64,6 +64,8 @@ void Resources::UnloadSounds()
 		delete it->second.buffer;
 		delete it->second.sound;
 	}
+	
+	s_Sounds.clear( );
 
 }
 
@@ -73,6 +75,7 @@ void Resources::UnloadTextures()
 	{
 		delete it->second;
 	}
+	s_Textures.clear( );
 }
 
 void Resources::UnloadResources()

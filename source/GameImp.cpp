@@ -3,17 +3,20 @@
 #include <iostream>
 #include <Entity.h>
 #include <SFML/Graphics/Sprite.hpp>
-#include <MemoryLeak.h>
+#include <Rabbit.h>
+#include <Tent.h>
+#include <Resources.h>
 
-// MemoryLeak.h filen !ALLTID SIST!
 #include <MemoryLeak.h>
 
 // Private static
 const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 35, 25 );
+const sf::Color GameImp::s_clearColor( 56, 215, 79, 255 );
 
 GameImp::GameImp( ) :
 	m_pRenderWindow( NULL ),
-	m_ppCollisionData( NULL )
+	m_ppCollisionData( NULL ),
+	m_mapColor( 255, 255, 255, 255 )
 {
 }
 
@@ -98,7 +101,8 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
-
+	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
+	m_entitys.push_back(new Tent(sf::Vector2f(0, 32)));
 	return true;
 }
 
@@ -120,7 +124,13 @@ void GameImp::Unload()
 		delete m_ppCollisionData;
 		m_ppCollisionData = NULL;
 	}
+	for(EntityVector::size_type i = 0; i < m_entitys.size( ); i++ )
+	{
+		delete m_entitys[ i ];
+	}
+	m_entitys.clear();
 
+	Resources::UnloadResources();
 }
 
 void GameImp::Update( float p_DeltaTime )
@@ -161,5 +171,15 @@ void GameImp::HandleEvent( sf::Event p_event)
 
 void GameImp::Render( )
 {
+	m_pRenderWindow->clear( s_clearColor );
 
+	// Render all the entities
+	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
+	{
+		sf::Sprite * pSprite = m_entitys[ i ]->GetSprite( );
+		pSprite->setColor( m_mapColor );
+		m_pRenderWindow->draw( *pSprite );
+	}
+
+	m_pRenderWindow->display( );
 }

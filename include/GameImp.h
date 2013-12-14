@@ -40,11 +40,13 @@ private:
 
 	// Private static
 	static const sf::Vector2u s_mapSize;
+	static const sf::Color s_clearColor;
 
 	// private variables
 	sf::RenderWindow * m_pRenderWindow;
 	EntityVector m_entitys;
 	bool ** m_ppCollisionData;
+	sf::Color m_mapColor;
 };
 
 
