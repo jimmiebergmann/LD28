@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\Animation.cpp" />
     <ClCompile Include="..\..\source\Bullet.cpp" />
     <ClCompile Include="..\..\source\Config.cpp" />
     <ClCompile Include="..\..\source\Enemy.cpp" />
@@ -99,6 +100,7 @@
     <ClCompile Include="..\..\source\Wolf.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Animation.h" />
     <ClInclude Include="..\..\include\Bullet.h" />
     <ClInclude Include="..\..\include\Config.h" />
     <ClInclude Include="..\..\include\Enemy.h" />
