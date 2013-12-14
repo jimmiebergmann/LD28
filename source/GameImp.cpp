@@ -54,7 +54,8 @@ int GameImp::Run( )
 	return 0;
 }
 
-static void HandleEvent(GameImp & p_gameImp, sf::Event p_event) {
+static void HandleEvent(GameImp & p_gameImp, sf::Event p_event)
+{
 	switch (p_event.type)
 	{
 	case sf::Event::Closed:
@@ -65,22 +66,23 @@ static void HandleEvent(GameImp & p_gameImp, sf::Event p_event) {
 	}
 }
 
-static bool Load() {
-	if( Config::Load( "Data/Configs1.txt" ) == false )
-	{
-		return false;
-	}
+static bool Load()
+{
+	Config::Load( "Data/Configs.txt" );
+
 	sf::Vector2u size = Config::GetScreenSize(); 
 	g_pRenderWindow = new sf::RenderWindow(sf::VideoMode(size.x, size.y), g_title);
 
 	return true;
 }
 
-static void Unload() {
+static void Unload()
+{
 
 }
 
-static void ErrorLoad(sf::String & p_errorDesc) {
+static void ErrorLoad(sf::String & p_errorDesc)
+{
 	char val;
 	std::cout << "Error: " << p_errorDesc.toAnsiString() << std::endl;
 	std::cout << "Press any key to conture " << std::endl;
