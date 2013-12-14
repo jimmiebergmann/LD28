@@ -3,11 +3,10 @@
 // MemoryLeak.h filen !ALLTID SIST!
 #include <MemoryLeak.h>
 
-Stone::Stone(sf::Vector2f p_position)
+Stone::Stone(sf::Vector2f p_position) :
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Stone.png"))) 
 {
-	m_sprite->setPosition( p_position );
-
-//	m_sprite->setTexture(*Resources::GetTexture( "Stone.png" ));
+	m_pSprite->setPosition( p_position );
 }
 
 Stone::~Stone()
@@ -27,7 +26,7 @@ void Stone::Collide( Game * p_pGame, const Entity * p_pOther)
 
 sf::Sprite * Stone::GetSprite( ) const
 {
-	return m_sprite;
+	return m_pSprite;
 }
 
 Entity::eType Stone::GetType( ) const

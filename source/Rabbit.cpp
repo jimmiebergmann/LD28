@@ -7,10 +7,9 @@
 #include <MemoryLeak.h>
 
 Rabbit::Rabbit(const sf::Vector2f p_position) :
-	m_position(p_position),
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Rabbit.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Rabbit.png"))) 
 {
-	m_pSprite->setPosition(m_position);
+	m_pSprite->setPosition(p_position);
 }
 
 Rabbit::~Rabbit()

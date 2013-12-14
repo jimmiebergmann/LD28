@@ -19,7 +19,7 @@ public:
 
 private:
 
-	sf::Sprite * m_sprite;
+	sf::Sprite * m_pSprite;
 	
 };
 

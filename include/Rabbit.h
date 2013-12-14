@@ -22,7 +22,6 @@ public:
 	virtual Entity::eType GetType() const;
 private:
 
-	sf::Vector2f m_position;
 	sf::Sprite * m_pSprite;
 
 };

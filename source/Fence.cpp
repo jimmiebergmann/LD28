@@ -3,11 +3,10 @@
 // MemoryLeak.h filen !ALLTID SIST!
 #include <MemoryLeak.h>
 
-Fence::Fence(sf::Vector2f p_position)
+Fence::Fence(sf::Vector2f p_position) :
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Fence.png"))) 
 {
-	m_sprite->setPosition( p_position );
-
-//	m_sprite->setTexture(*Resources::GetTexture( "Fence.png" ));
+	m_pSprite->setPosition( p_position );
 }
 
 Fence::~Fence()
@@ -27,7 +26,7 @@ void Fence::Collide( Game * p_pGame, const Entity * p_pOther )
 
 sf::Sprite * Fence::GetSprite( ) const
 {
-	return m_sprite;
+	return m_pSprite;
 }
 
 Entity::eType Fence::GetType( ) const
