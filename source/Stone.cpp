@@ -13,12 +13,12 @@ Stone::~Stone()
 	// Shall I unload Texture here?
 }
 
-void Stone::Update( )
+void Stone::Update( Game * p_pGame, float p_deltaTime )
 {
 	//Update
 }
 
-void Stone::Collide( )
+void Stone::Collide( Game * p_pGame, const Entity * p_pOther)
 {
 	//Collide
 }

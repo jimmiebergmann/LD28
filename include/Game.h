@@ -1,6 +1,7 @@
 #ifndef GAME_GAME_H
 #define GAME_GAME_H
 
+#include <SFML/System/Vector2.hpp>
 #include <vector>
 
 class Entity;
@@ -15,10 +16,10 @@ public:
 
 	virtual ~Game( ) { }
 	
-	// virtual functions
-	virtual EntityVector & getEntities() = 0;
-
 	// get functions
+	virtual EntityVector & GetEntities( ) = 0;
+	virtual sf::Vector2u GetMapSize( ) const = 0;
+	virtual bool GetCollisionData( const sf::Vector2u p_Coordinate ) const = 0;
 
 	// set functions
 
