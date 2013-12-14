@@ -3,9 +3,15 @@
 #include <iostream>
 #include <MemoryLeak.h>
 
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
+
+// Private static
+const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 35, 25 );
 
 GameImp::GameImp( ) :
-	m_pRenderWindow( NULL )
+	m_pRenderWindow( NULL ),
+	m_ppCollisionData( NULL )
 {
 }
 
@@ -13,27 +19,47 @@ GameImp::~GameImp( )
 {
 }
 
-Game::EntityVector & GameImp::getEntities()
+Game::EntityVector & GameImp::GetEntities( )
 {
 	return m_entitys;
 }
+
+ sf::Vector2u GameImp::GetMapSize( ) const
+ {
+	 return s_mapSize;
+ }
+
+ bool GameImp::GetCollisionData( const sf::Vector2u p_Coordinate ) const
+ {
+	 return m_ppCollisionData[ p_Coordinate.x ][ p_Coordinate.y ];
+ }
 
 
 int GameImp::Run( )
 {
 	InitMemoryLeak();
 
-	if(!Load()) {
+	// Load the game
+	if( !Load( ) ) {
 		return Error(sf::String("Could not load resouced"));
 	}
 
+	// Start the game loop
 	while (m_pRenderWindow->isOpen())
 	{
-		sf::Event eventA;
-		while (m_pRenderWindow->pollEvent(eventA))
+		// Handle the events
+		sf::Event e;
+		while (m_pRenderWindow->pollEvent(e))
 		{
-			HandleEvent( eventA );
+			HandleEvent( e );
 		}
+
+		// Update the game
+		Update( 0.0f );
+
+		// Render the game
+		Render( );
+
 	}
 
 	// Exit the aplication
@@ -54,10 +80,23 @@ int GameImp::Error( const sf::String & p_errorDesc)
 
 bool GameImp::Load()
 {
+	// Load the config file
 	Config::Load( "Data/Configs.txt" );
 
+	// Load the window
 	sf::Vector2u size = Config::GetScreenSize(); 
 	m_pRenderWindow = new sf::RenderWindow(sf::VideoMode(size.x, size.y), "Y.O.G.O. Game");
+
+	// Load the collision data
+	m_ppCollisionData = new bool * [ s_mapSize.x ];
+	for( unsigned int i = 0; i < s_mapSize.x; i++ )
+	{
+		m_ppCollisionData[ i ] = new bool [s_mapSize.y ];
+		for( unsigned int j = 0; j < s_mapSize.y; j++ )
+		{
+			m_ppCollisionData[ i ][ j ] = false;
+		}
+	}
 
 	return true;
 }
@@ -68,6 +107,17 @@ void GameImp::Unload()
 	{
 		delete m_pRenderWindow;
 		m_pRenderWindow = NULL;
+	}
+
+	if( m_ppCollisionData )
+	{
+		for( unsigned int i = 0; i < s_mapSize.x; i++ )
+		{
+			delete m_ppCollisionData[ i ];
+		}
+		
+		delete m_ppCollisionData;
+		m_ppCollisionData = NULL;
 	}
 
 }

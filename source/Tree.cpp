@@ -1,7 +1,8 @@
 #include <Tree.h>
 
 
-
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
 
 Tree::Tree(sf::Vector2f p_position)
 {

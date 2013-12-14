@@ -1,5 +1,9 @@
 #include "Animation.h"
 
+
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
+
 Animation::Animation(const std::string& filename, int timePerFrame, int numFrames) : 
 	m_timePerFrame(timePerFrame),
 	m_numFrames(numFrames),
