@@ -24,10 +24,10 @@ public:
 	virtual Entity::eType GetType() const;
 private:
 
-	sf::Vector2f	m_position;
 	Animation *		m_pMoveAnimation;
 	Animation *		m_pIdleAnimation;
 	Animation *		m_pCurrentAnimation;
+
 };
 
 #endif // GAME_RABBIT_H

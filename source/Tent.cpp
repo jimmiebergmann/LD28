@@ -5,10 +5,9 @@
 #include <MemoryLeak.h>
 
 Tent::Tent(const sf::Vector2f p_position) :
-	m_position(p_position),
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/RabbitTest.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Tent.png"))) 
 {
-	m_pSprite->setPosition(m_position);
+	m_pSprite->setPosition(p_position);
 }
 
 Tent::~Tent()
@@ -33,7 +32,7 @@ void Tent::Collide(Game * p_pGame, const Entity * p_pOther)
 
 Entity::eType Tent::GetType() const 
 {
-	return Entity::eType::Type_Rabit;
+	return Entity::eType::Type_Tent;
 }
 
 sf::Sprite * Tent:: GetSprite( ) const

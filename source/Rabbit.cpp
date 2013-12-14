@@ -8,10 +8,13 @@
 #include <MemoryLeak.h>
 
 Rabbit::Rabbit(const sf::Vector2f p_position) :
-	m_position(p_position),
 	m_pMoveAnimation(new Animation("Data/Textures/RabbitMovingTest.png", 200, 2)),
-	m_pIdleAnimation(new Animation("Data/Textures/RabbitTest.png", 200, 1)) 
+	m_pIdleAnimation(new Animation("Data/Textures/RabbitTest.png", 200, 1)),
+	m_pCurrentAnimation(0)
 {
+	m_pCurrentAnimation = m_pIdleAnimation;
+	m_pCurrentAnimation->setPosition(p_position);
+
 }
 
 Rabbit::~Rabbit()
@@ -29,14 +32,15 @@ Rabbit::~Rabbit()
 void Rabbit::Update(Game * p_pGame, float p_deltaTime)
 {
 	sf::Vector2f velocity(std::rand() % 10, std::rand() % 10);
-	m_position += velocity * 0.01f;
+	sf::Vector2f position = m_pCurrentAnimation->getSprite()->getPosition();
+	position += velocity * 0.01f;
 	if (velocity.x * velocity.y > 2.5f) {
 		m_pCurrentAnimation = m_pMoveAnimation;
 	} else {
 		m_pCurrentAnimation = m_pIdleAnimation;
 	}
 	m_pCurrentAnimation->update();
-	m_pCurrentAnimation->setPosition(m_position);
+	m_pCurrentAnimation->setPosition(position);
 }
 
 void Rabbit::Collide(Game * p_pGame, const Entity * p_pOther)
@@ -55,5 +59,5 @@ Entity::eType Rabbit::GetType() const
 
 sf::Sprite * Rabbit:: GetSprite( ) const
 {
-	return const_cast<sf::Sprite *>(&m_pCurrentAnimation->getSprite());
+	return m_pCurrentAnimation->getSprite();
 }

@@ -4,11 +4,10 @@
 // MemoryLeak.h filen !ALLTID SIST!
 #include <MemoryLeak.h>
 
-Tree::Tree(sf::Vector2f p_position)
+Tree::Tree(sf::Vector2f p_position) :
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/sTree.png"))) 
 {
-	m_sprite->setPosition( p_position );
-
-//	m_sprite->setTexture(*Resources::GetTexture(" Tree.png" ));
+	m_pSprite->setPosition( p_position );
 }
 
 Tree::~Tree()
@@ -28,7 +27,7 @@ void Tree::Collide( Game * p_pGame, const Entity * p_pOther )
 
 sf::Sprite * Tree::GetSprite( ) const
 {
-	return m_sprite;
+	return m_pSprite;
 }
 
 Entity::eType Tree::GetType( ) const
