@@ -82,10 +82,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\source\GameImp.cpp" />
     <ClCompile Include="..\..\source\Main.cpp" />
+    <ClCompile Include="..\..\source\Tile.cpp" />
+    <ClCompile Include="..\..\source\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Game.h" />
     <ClInclude Include="..\..\include\GameImp.h" />
+    <ClInclude Include="..\..\include\Tile.h" />
+    <ClInclude Include="..\..\include\Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

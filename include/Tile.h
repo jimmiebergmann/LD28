@@ -1,5 +1,5 @@
 #ifndef GAME_TILE_H
-#ifndef GAME_TILE_H
+#define GAME_TILE_H
 #include <SFML\Graphics.hpp>
 
 class Tile
@@ -8,10 +8,10 @@ class Tile
 public:
 
 	Tile();
-	~Tile();
+	virtual ~Tile();
 
 	// Get Functions
-	virtual sf::Sprite GetSprite( ) const = 0;
+	virtual sf::Sprite * GetSprite( ) const = 0;
 	
 
 
@@ -25,4 +25,4 @@ private:
 };
 
 
-
+#endif
