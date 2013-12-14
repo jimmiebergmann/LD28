@@ -38,6 +38,8 @@ void Player::Update(Game * p_pGame, float p_deltaTime)
 		m_CurrentAnimation = m_WalkLeft;
 	}
 
+	m_CurrentAnimation->getSprite.setPosition(m_Postition);
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		// Attack();
