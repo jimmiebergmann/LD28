@@ -7,6 +7,7 @@ class GameImp : public Game
 {
 
 public:
+
 	// Construcotrs / destructor
 	GameImp( );
 	virtual ~GameImp( );

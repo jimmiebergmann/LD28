@@ -18,6 +18,7 @@ obj
 *.depend
 *.filters
 *.tlog
+*.ilk
 
 # Extra #
 *.tga

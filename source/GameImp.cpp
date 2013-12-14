@@ -1,4 +1,5 @@
 #include <GameImp.h>
+#include <Config.h>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
@@ -61,10 +62,17 @@ static void g_HandleEvent(GameImp & p_gameImp, sf::Event p_event) {
 }
 
 static bool g_Load() {
+	if( Config::Load( "Data/Configs.txt" ) == false )
+	{
+		return 0;
+	}
+	
 	return true;
 }
 
 static void g_Unload() {
+
+
 }
 
 static void g_ErrorLoad(sf::String & p_errorDesc) {
