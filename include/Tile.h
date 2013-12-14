@@ -11,7 +11,7 @@ public:
 	virtual ~Tile();
 
 	// Get Functions
-	virtual sf::Sprite * GetSprite( ) const = 0;
+
 	
 
 
