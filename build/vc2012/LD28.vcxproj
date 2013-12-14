@@ -91,6 +91,7 @@
     <ClInclude Include="..\..\include\Config.h" />
     <ClInclude Include="..\..\include\Game.h" />
     <ClInclude Include="..\..\include\GameImp.h" />
+    <ClInclude Include="..\..\include\MemoryLeak.h" />
     <ClInclude Include="..\..\include\Tile.h" />
     <ClInclude Include="..\..\include\Tree.h" />
     <ClInclude Include="..\..\include\Resources.h" />
