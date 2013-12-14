@@ -12,8 +12,11 @@ Tent::Tent(const sf::Vector2f p_position) :
 
 Tent::~Tent()
 {
-	delete m_pSprite;
-	m_pSprite = 0;
+	if( m_pSprite )
+	{
+		delete m_pSprite;
+		m_pSprite = NULL;
+	}
 }
 
 void Tent:: Update(Game * p_pGame, float p_deltaTime)
