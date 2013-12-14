@@ -1,10 +1,6 @@
 # Directories #
 Obj
 obj
-Lib
-lib
-Bin
-bin
 
 # Compiled #
 *.obj
