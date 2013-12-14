@@ -1,21 +1,30 @@
 #ifndef GAME_GAME_IMP_H
 #define GAME_GAME_IMP_H
 
-class GameImp
+#include <Game.h>
+
+class GameImp : public Game
 {
 
 public:
-
-
 	// Construcotrs / destructor
 	GameImp( );
-	~GameImp( );
+	virtual ~GameImp( );
 
 	// Public functions
 	int Run( );
+	
+	// virtual functions
+	virtual EntityVector & getEntities();
+	virtual TileVector & getTiles();
+
+	// get functions
+
+	// set functions
 
 private:
-
+	EntityVector m_entitys;
+	TileVector  m_tiles;
 };
 
 
