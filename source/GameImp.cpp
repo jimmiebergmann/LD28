@@ -8,12 +8,16 @@
 #include <Resources.h>
 #include <Stone.h>
 #include <Tree.h>
+#include <Fence.h>
+#include <Trap.h>
 
 #include <MemoryLeak.h>
 
 // Private static
 const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 35, 25 );
 const sf::Color GameImp::s_clearColor( 56, 215, 79, 255 );
+
+static float g_fps = 0;
 
 GameImp::GameImp( ) :
 	m_pRenderWindow( NULL ),
@@ -50,6 +54,8 @@ int GameImp::Run( )
 		return Error(sf::String("Could not load resouced"));
 	}
 
+	int framCount = 0;
+	sf::Clock clocl;
 	// Start the game loop
 	while (m_pRenderWindow->isOpen())
 	{
@@ -59,7 +65,13 @@ int GameImp::Run( )
 		{
 			HandleEvent( e );
 		}
-
+		framCount++;
+		if (clocl.getElapsedTime().asSeconds() > 0.5f) {
+			g_fps = framCount / clocl.getElapsedTime().asSeconds();
+			clocl.restart();
+			framCount = 0;
+			std::cout << g_fps << std::endl;
+		}
 		// Update the game
 		Update( 0.0f );
 
@@ -92,6 +104,8 @@ bool GameImp::Load()
 	// Load the window
 	sf::Vector2u & size = Config::GetScreenSize(); 
 	m_pRenderWindow = new sf::RenderWindow(sf::VideoMode(size.x, size.y), "Y.O.G.O. Game");
+	
+	m_pRenderWindow->setFramerateLimit(60);
 
 	// Load the collision data
 	m_ppCollisionData = new bool * [ s_mapSize.x ];
@@ -120,6 +134,14 @@ bool GameImp::Load()
 			else if (val == 7)
 			{
 				m_entitys.push_back(new Tree(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 6)
+			{
+				m_entitys.push_back(new Fence(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 5)
+			{
+				m_entitys.push_back(new Trap(sf::Vector2f(i * 32.0f, j * 32.0f))); 
 			}
 		}
 	}
