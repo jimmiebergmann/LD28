@@ -1,7 +1,7 @@
 #ifndef GAME_RABBIT_H
 #define GAME_RABBIT_H
 
-#include <Entitiy.h>
+#include <Entity.h>
 
 #include <SFML\System\Vector2.hpp>
 

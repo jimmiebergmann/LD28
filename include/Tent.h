@@ -1,7 +1,7 @@
 #ifndef GAME_TENT_H
 #define GAME_TENT_H
 
-#include <Entitiy.h>
+#include <Entity.h>
 
 #include <SFML\Graphics.hpp>
 
