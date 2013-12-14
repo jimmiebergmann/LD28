@@ -5,20 +5,18 @@
 #include <MemoryLeak.h>
 
 Tent::Tent(const sf::Vector2f p_position) :
-<<<<<<< HEAD
 	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Tent.png"))) 
-=======
-	m_position(p_position),
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/RabbitTest.png"))) 
->>>>>>> f2b631d7e78b879648ed6cb3716dc81375549669
 {
 	m_pSprite->setPosition(p_position);
 }
 
 Tent::~Tent()
 {
-	delete m_pSprite;
-	m_pSprite = 0;
+	if( m_pSprite )
+	{
+		delete m_pSprite;
+		m_pSprite = NULL;
+	}
 }
 
 void Tent:: Update(Game * p_pGame, float p_deltaTime)

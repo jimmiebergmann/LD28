@@ -7,15 +7,18 @@
 #include <MemoryLeak.h>
 
 Wolf::Wolf(const sf::Vector2f p_position) :
-	m_position(p_position),
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Wolf.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Wolf.png"))) 
 {
 	m_pSprite->setPosition(m_position);
 }
 
 Wolf::~Wolf()
 {
-
+	if( m_pSprite )
+	{
+		delete m_pSprite;
+		m_pSprite = NULL;
+	}
 }
 
 void Wolf::Update(Game * p_pGame, float p_deltaTime)

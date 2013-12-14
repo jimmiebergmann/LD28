@@ -12,7 +12,11 @@ Tree::Tree(sf::Vector2f p_position) :
 
 Tree::~Tree()
 {
-	// Shall I unload Texture here?
+	if( m_pSprite )
+	{
+		delete m_pSprite;
+		m_pSprite = NULL;
+	}
 }
 
 void Tree::Update( Game * p_pGame, float p_deltaTime )

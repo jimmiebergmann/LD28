@@ -11,7 +11,11 @@ Fence::Fence(sf::Vector2f p_position) :
 
 Fence::~Fence()
 {
-	// Shall I unload Texture here?
+	if( m_pSprite )
+	{
+		delete m_pSprite;
+		m_pSprite = NULL;
+	}
 }
 
 void Fence::Update( Game * p_pGame, float p_deltaTime)
