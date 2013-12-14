@@ -1,5 +1,6 @@
 #include <Rabbit.h>
 #include <Resources.h>
+#include <Animation.h>
 
 #include <SFML\Graphics\Sprite.hpp>
 
@@ -8,20 +9,34 @@
 
 Rabbit::Rabbit(const sf::Vector2f p_position) :
 	m_position(p_position),
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/RabbitTest.png"))) 
+	m_pMoveAnimation(new Animation("Data/Textures/RabbitMovingTest.png", 200, 2)),
+	m_pIdleAnimation(new Animation("Data/Textures/RabbitTest.png", 200, 1)) 
 {
-	m_pSprite->setPosition(m_position);
 }
 
 Rabbit::~Rabbit()
 {
-	delete m_pSprite;
-	m_pSprite = 0;
+	if (!m_pMoveAnimation)
+	{
+		return;
+	}
+	delete m_pIdleAnimation;
+	delete m_pMoveAnimation;
+	m_pIdleAnimation = 0;
+	m_pMoveAnimation = 0;
 }
 
 void Rabbit::Update(Game * p_pGame, float p_deltaTime)
 {
-
+	sf::Vector2f velocity(std::rand() % 10, std::rand() % 10);
+	m_position += velocity * 0.01f;
+	if (velocity.x * velocity.y > 2.5f) {
+		m_pCurrentAnimation = m_pMoveAnimation;
+	} else {
+		m_pCurrentAnimation = m_pIdleAnimation;
+	}
+	m_pCurrentAnimation->update();
+	m_pCurrentAnimation->setPosition(m_position);
 }
 
 void Rabbit::Collide(Game * p_pGame, const Entity * p_pOther)
@@ -40,5 +55,5 @@ Entity::eType Rabbit::GetType() const
 
 sf::Sprite * Rabbit:: GetSprite( ) const
 {
-	return m_pSprite;
+	return const_cast<sf::Sprite *>(&m_pCurrentAnimation->getSprite());
 }

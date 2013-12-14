@@ -88,7 +88,7 @@ bool GameImp::Load()
 	Config::Load( "Data/Configs.txt" );
 
 	// Load the window
-	sf::Vector2u size = Config::GetScreenSize(); 
+	sf::Vector2u & size = Config::GetScreenSize(); 
 	m_pRenderWindow = new sf::RenderWindow(sf::VideoMode(size.x, size.y), "Y.O.G.O. Game");
 
 	// Load the collision data
@@ -101,8 +101,19 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
+
+	for( unsigned int i = 0; i < s_mapSize.x; i++ )
+	{
+		for( unsigned int j = 0; j < s_mapSize.y; j++ )
+		{
+			if (std::rand() % 2)
+			{
+				m_entitys.push_back(new Tent(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+		}
+	}
+
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
-	m_entitys.push_back(new Tent(sf::Vector2f(0, 32)));
 	return true;
 }
 
