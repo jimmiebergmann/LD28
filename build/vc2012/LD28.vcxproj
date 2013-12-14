@@ -40,14 +40,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\bin</OutDir>
-    <IntDir>..\..\LD28\Debug</IntDir>
+    <IntDir>..\..\obj\LD28\Debug</IntDir>
     <TargetName>$(ProjectName)-d</TargetName>
     <IncludePath>..\..\include;..\..\extlibs\SFML-2.1\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\extlibs\SFML-2.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\bin</OutDir>
-    <IntDir>..\..\LD28\Release</IntDir>
+    <IntDir>..\..\obj\LD28\Release</IntDir>
     <IncludePath>..\..\include;..\..\extlibs\SFML-2.1\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\extlibs\SFML-2.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
