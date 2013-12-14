@@ -11,7 +11,7 @@ public:
 	
 	// Get Functions
 	virtual sf::Sprite * GetSprite( ) const;
-	virtual eType GetType ( ) const;
+	virtual Entity::eType GetType ( ) const;
 private:
 };
 
