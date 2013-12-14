@@ -19,3 +19,8 @@ sf::Sprite * Tree::GetSprite( ) const
 {
 	return m_sprite;
 }
+
+eType Tree::GetType( ) const
+{
+	return Type_Tree;
+}

@@ -3,17 +3,18 @@
 
 #include <Tile.h>
 #include <Resources.h>
+#include <Entity.h>
 
-class Stone : public Tile
+class Stone : public Entity
 {
 
 public:
 
 	Stone(sf::Vector2f p_position);
-	~Stone();
+	virtual ~Stone();
 
 	virtual sf::Sprite * GetSprite( ) const;
-
+	virtual eType GetType( ) const;
 
 private:
 
