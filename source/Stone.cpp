@@ -13,6 +13,16 @@ Stone::~Stone()
 	// Shall I unload Texture here?
 }
 
+void Stone::Update( )
+{
+	//Update
+}
+
+void Stone::Collide( )
+{
+	//Collide
+}
+
 sf::Sprite * Stone::GetSprite( ) const
 {
 	return m_sprite;

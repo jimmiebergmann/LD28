@@ -11,6 +11,9 @@ public:
 	Tree(sf::Vector2f p_position);
 	virtual ~Tree();
 
+	virtual void Update();
+	virtual void Collide();
+
 	virtual sf::Sprite * GetSprite( ) const;
 	virtual eType GetType( ) const;
 
