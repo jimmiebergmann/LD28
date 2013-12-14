@@ -102,7 +102,7 @@
     <ClInclude Include="..\..\include\Bullet.h" />
     <ClInclude Include="..\..\include\Config.h" />
     <ClInclude Include="..\..\include\Enemy.h" />
-    <ClInclude Include="..\..\include\Entitiy.h" />
+    <ClInclude Include="..\..\include\Entity.h" />
     <ClInclude Include="..\..\include\Fence.h" />
     <ClInclude Include="..\..\include\Game.h" />
     <ClInclude Include="..\..\include\GameImp.h" />

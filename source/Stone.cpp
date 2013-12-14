@@ -1,10 +1,11 @@
 #include <Stone.h>
 
+
 Stone::Stone(sf::Vector2f p_position)
 {
 	m_sprite->setPosition( p_position );
 
-//	m_sprite->setTexture(*Resources::GetTexture(" Tree.png" ));
+//	m_sprite->setTexture(*Resources::GetTexture( "Stone.png" ));
 }
 
 Stone::~Stone()
@@ -15,4 +16,9 @@ Stone::~Stone()
 sf::Sprite * Stone::GetSprite( ) const
 {
 	return m_sprite;
+}
+
+eType Stone::GetType( ) const
+{
+	return Type_Stone;
 }
