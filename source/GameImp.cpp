@@ -6,6 +6,8 @@
 #include <Rabbit.h>
 #include <Tent.h>
 #include <Resources.h>
+#include <Stone.h>
+#include <Tree.h>
 
 #include <MemoryLeak.h>
 
@@ -106,9 +108,18 @@ bool GameImp::Load()
 	{
 		for( unsigned int j = 0; j < s_mapSize.y; j++ )
 		{
-			if (std::rand() % 2)
+			int val = std::rand() % 10;
+			if (val == 9)
 			{
 				m_entitys.push_back(new Tent(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 8)
+			{
+				m_entitys.push_back(new Stone(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 7)
+			{
+				m_entitys.push_back(new Tree(sf::Vector2f(i * 32.0f, j * 32.0f))); 
 			}
 		}
 	}
