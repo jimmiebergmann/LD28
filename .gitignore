@@ -1,6 +1,8 @@
 # Directories #
 Obj
 obj
+Textures
+Sounds
 
 # Compiled #
 *.obj
