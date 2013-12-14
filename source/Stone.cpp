@@ -18,7 +18,7 @@ sf::Sprite * Stone::GetSprite( ) const
 	return m_sprite;
 }
 
-eType Stone::GetType( ) const
+Entity::eType Stone::GetType( ) const
 {
 	return Type_Stone;
 }

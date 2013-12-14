@@ -1,18 +1,20 @@
 #include <Rabbit.h>
 #include <Resources.h>
 
+#include <SFML\Graphics\Sprite.hpp>
+
 #include <MemoryLeak.h>
 
-Rabbit::Rabbit(const sf::Vector2f p_position)
-{
-
+Rabbit::Rabbit(const sf::Vector2f p_position) :
+	m_position(p_position) {
 }
+
 Rabbit::~Rabbit()
 {
 
 }
 
-void Rabbit:: Update(Game * p_pGame, float p_deltaTime)
+void Rabbit::Update(Game * p_pGame, float p_deltaTime)
 {
 
 }
