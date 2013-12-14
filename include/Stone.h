@@ -13,6 +13,9 @@ public:
 	Stone(sf::Vector2f p_position);
 	virtual ~Stone();
 
+	virtual void Update();
+	virtual void Collide();
+
 	virtual sf::Sprite * GetSprite( ) const;
 	virtual eType GetType( ) const;
 

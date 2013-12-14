@@ -15,6 +15,16 @@ Tree::~Tree()
 	// Shall I unload Texture here?
 }
 
+void Tree::Update( )
+{
+	//Update
+}
+
+void Tree::Collide( )
+{
+	//Collide
+}
+
 sf::Sprite * Tree::GetSprite( ) const
 {
 	return m_sprite;
