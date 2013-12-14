@@ -80,20 +80,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\Bullet.cpp" />
     <ClCompile Include="..\..\source\Config.cpp" />
+    <ClCompile Include="..\..\source\Enemy.cpp" />
+    <ClCompile Include="..\..\source\Fence.cpp" />
     <ClCompile Include="..\..\source\GameImp.cpp" />
     <ClCompile Include="..\..\source\Main.cpp" />
-    <ClCompile Include="..\..\source\Tile.cpp" />
-    <ClCompile Include="..\..\source\Tree.cpp" />
+    <ClCompile Include="..\..\source\Player.cpp" />
+    <ClCompile Include="..\..\source\Rabbit.cpp" />
     <ClCompile Include="..\..\source\Resources.cpp" />
+    <ClCompile Include="..\..\source\Stone.cpp" />
+    <ClCompile Include="..\..\source\Tent.cpp" />
+    <ClCompile Include="..\..\source\Tile.cpp" />
+    <ClCompile Include="..\..\source\Trap.cpp" />
+    <ClCompile Include="..\..\source\Tree.cpp" />
+    <ClCompile Include="..\..\source\Turret.cpp" />
+    <ClCompile Include="..\..\source\TurretBullet.cpp" />
+    <ClCompile Include="..\..\source\Wolf.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Bullet.h" />
     <ClInclude Include="..\..\include\Config.h" />
+    <ClInclude Include="..\..\include\Enemy.h" />
+    <ClInclude Include="..\..\include\Entitiy.h" />
+    <ClInclude Include="..\..\include\Fence.h" />
     <ClInclude Include="..\..\include\Game.h" />
     <ClInclude Include="..\..\include\GameImp.h" />
-    <ClInclude Include="..\..\include\Tile.h" />
-    <ClInclude Include="..\..\include\Tree.h" />
+    <ClInclude Include="..\..\include\MemoryLeak.h" />
+    <ClInclude Include="..\..\include\Player.h" />
+    <ClInclude Include="..\..\include\Rabbit.h" />
     <ClInclude Include="..\..\include\Resources.h" />
+    <ClInclude Include="..\..\include\Stone.h" />
+    <ClInclude Include="..\..\include\Tent.h" />
+    <ClInclude Include="..\..\include\Tile.h" />
+    <ClInclude Include="..\..\include\Trap.h" />
+    <ClInclude Include="..\..\include\Tree.h" />
+    <ClInclude Include="..\..\include\Turret.h" />
+    <ClInclude Include="..\..\include\TurretBullet.h" />
+    <ClInclude Include="..\..\include\Weapon.h" />
+    <ClInclude Include="..\..\include\Wolf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
