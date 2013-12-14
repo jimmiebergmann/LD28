@@ -83,11 +83,13 @@
     <ClCompile Include="..\..\source\Config.cpp" />
     <ClCompile Include="..\..\source\GameImp.cpp" />
     <ClCompile Include="..\..\source\Main.cpp" />
+    <ClCompile Include="..\..\source\Resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Config.h" />
     <ClInclude Include="..\..\include\Game.h" />
     <ClInclude Include="..\..\include\GameImp.h" />
+    <ClInclude Include="..\..\include\Resources.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
