@@ -1,21 +1,18 @@
-#include <Tree.h>
+#include <Stone.h>
 
-
-
-
-Tree::Tree(sf::Vector2f p_position)
+Stone::Stone(sf::Vector2f p_position)
 {
 	m_sprite->setPosition( p_position );
 
 //	m_sprite->setTexture(*Resources::GetTexture(" Tree.png" ));
 }
 
-Tree::~Tree()
+Stone::~Stone()
 {
 	// Shall I unload Texture here?
 }
 
-sf::Sprite * Tree::GetSprite( ) const
+sf::Sprite * Stone::GetSprite( ) const
 {
 	return m_sprite;
 }
