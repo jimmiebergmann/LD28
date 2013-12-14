@@ -2,6 +2,7 @@
 #include <iostream>
 
 Resources::SoundMap Resources::s_Sounds;
+Resources::TextureMap Resources::s_Textures;
 
 sf::Sound * Resources::GetSound( const std::string &filename )
 {
