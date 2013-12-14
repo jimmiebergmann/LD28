@@ -11,7 +11,11 @@ Stone::Stone(sf::Vector2f p_position) :
 
 Stone::~Stone()
 {
-	// Shall I unload Texture here?
+	if( m_pSprite )
+	{
+		delete m_pSprite;
+		m_pSprite = NULL;
+	}
 }
 
 void Stone::Update( Game * p_pGame, float p_deltaTime )
