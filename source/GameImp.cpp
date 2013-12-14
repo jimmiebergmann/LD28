@@ -1,6 +1,11 @@
 #include <GameImp.h>
 #include <Config.h>
 #include <iostream>
+#include <Entity.h>
+#include <SFML/Graphics/Sprite.hpp>
+#include <MemoryLeak.h>
+
+// MemoryLeak.h filen !ALLTID SIST!
 #include <MemoryLeak.h>
 
 // Private static
@@ -30,7 +35,6 @@ Game::EntityVector & GameImp::GetEntities( )
  {
 	 return m_ppCollisionData[ p_Coordinate.x ][ p_Coordinate.y ];
  }
-
 
 int GameImp::Run( )
 {
@@ -121,7 +125,26 @@ void GameImp::Unload()
 
 void GameImp::Update( float p_DeltaTime )
 {
+	// Update all the entities
+	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
+	{
+		m_entitys[ i ]->Update( this, p_DeltaTime );
+	}
 
+	// Collision check all the entities
+	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
+	{
+		for( unsigned int j = i + 1; j < m_entitys.size( ); j++ )
+		{
+			sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
+			sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
+
+			if( rect0.intersects( rect1 ) )
+			{
+				m_entitys[ i ]->Collide( this, m_entitys[ j ] );
+			}
+		}
+	}
 }
 
 void GameImp::HandleEvent( sf::Event p_event)

@@ -1,6 +1,7 @@
 #include <Tent.h>
 #include <Resources.h>
 
+// MemoryLeak.h filen !ALLTID SIST!
 #include <MemoryLeak.h>
 
 Tent::Tent(const sf::Vector2f p_position) :

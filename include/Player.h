@@ -1,6 +1,7 @@
-#include <Entity.h>
 #ifndef GAME_PLAYER_H
 #define GAME_PLAYER_H
+
+#include <Entity.h>
 
 class Player : public Entity
 {

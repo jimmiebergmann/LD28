@@ -1,6 +1,9 @@
 #include "Resources.h"
 #include <iostream>
 
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
+
 Resources::SoundMap Resources::s_Sounds;
 Resources::TextureMap Resources::s_Textures;
 
