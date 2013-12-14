@@ -1,0 +1,40 @@
+#ifndef GAME_FILNAMM_H
+#ifndef GAME_FILNAMM_H
+
+class Player
+{
+
+public:
+
+	Player( );
+	~Player( );
+	
+	// Virtual functions
+	virtual Render( int p_a, int & p_b, int * p_pC );
+	virtual Update( ... );
+	// ...
+	
+	// Public general function
+	int GetHealth( );
+	
+	// Set functions
+	void SetHealth( const int p_health );
+	
+	// Get functions
+	int GetHealth( ) const;
+
+private:
+
+	int m_health;
+	int * m_pData0;
+	
+	static int s_Data1;
+
+};
+
+#endif
+
+
+
+// .cpp
+static int g_data = 5;
