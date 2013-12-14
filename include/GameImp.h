@@ -15,7 +15,9 @@ public:
 	virtual ~GameImp( );
 
 	// virtual functions
-	virtual EntityVector & getEntities();
+	virtual EntityVector & GetEntities( );
+	virtual sf::Vector2u GetMapSize( ) const;
+	virtual bool GetCollisionData( const sf::Vector2u p_Coordinate ) const;
 
 	// Public functions
 	int Run( );
@@ -30,15 +32,19 @@ private:
 
 	// Private functions
 	int Error( const sf::String & p_errorDesc);
-	bool Load();
-	void Unload();
+	bool Load( );
+	void Unload( );
 	void Update( float p_DeltaTime );
 	void HandleEvent( sf::Event p_event);
 	void Render( );
 
+	// Private static
+	static const sf::Vector2u s_mapSize;
+
 	// private variables
 	sf::RenderWindow * m_pRenderWindow;
 	EntityVector m_entitys;
+	bool ** m_ppCollisionData;
 };
 
 
