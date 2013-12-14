@@ -9,6 +9,7 @@ class Entity
 {
 	
 public:
+
 	enum eType
 	{
 		Type_Wolf,
@@ -18,10 +19,12 @@ public:
 		Type_Turret,
 		Type_Fence,
 		Type_Trap,
-		Type_Bullet
+		Type_Bullet,
+		Type_Stone,
+		Type_Tree
 	};
 
-	virtual ~Entity() {};
+	virtual ~Entity(){}
 
 
 	// Normal functions
@@ -29,8 +32,9 @@ public:
 	virtual void Collide(Game * p_pGame, const Entity * p_pOther) = 0;
 
 	// Get function
-	virtual sf::Sprite * GetSprite( )const = 0;
-	virtual eType GetType() const = 0;
+	virtual sf::Sprite * GetSprite( ) const = 0;
+	virtual eType GetType( ) const = 0;
+
 private:
 
 

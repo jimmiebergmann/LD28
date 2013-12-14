@@ -1,18 +1,18 @@
 #ifndef GAME_TREE_H
 #define GAME_TREE_H
-#include <Tile.h>
 #include <Resources.h>
+#include <Entity.h>
 
-class Tree : public Tile
+class Tree : public Entity
 {
 
 public:
 
 	Tree(sf::Vector2f p_position);
-	~Tree();
+	virtual ~Tree();
 
 	virtual sf::Sprite * GetSprite( ) const;
-
+	virtual eType GetType( ) const;
 
 private:
 
