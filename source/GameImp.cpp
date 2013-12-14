@@ -2,10 +2,17 @@
 #include <Config.h>
 #include <MemoryLeak.h>
 
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
 #include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <cmath>
 
 //private global vairables
 static const sf::String g_title = "Y.O.G.O. Game";
@@ -64,7 +71,7 @@ static bool Load()
 	Config::Load( "Data/Configs.txt" );
 
 	sf::Vector2u size = Config::GetScreenSize(); 
-	g_pRenderWindow = newAPI sf::RenderWindow(sf::VideoMode(size.x, size.y), g_title);
+	g_pRenderWindow = new sf::RenderWindow(sf::VideoMode(size.x, size.y), g_title);
 
 	return true;
 }
