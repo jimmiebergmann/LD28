@@ -33,13 +33,13 @@
 	#include <stdlib.h>
 	#include <crtdbg.h>
 
-	#define newAPI new(_NORMAL_BLOCK, __FILE__, __LINE__)
+	#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 	
 	#define InitMemoryLeak() _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF)
 
 #else // NDEBUG
 
-	#define newAPI new
+	#define new new
 
     #define InitMemoryLeak()
 

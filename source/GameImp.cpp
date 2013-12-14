@@ -3,6 +3,7 @@
 #include <iostream>
 #include <MemoryLeak.h>
 
+
 GameImp::GameImp( ) :
 	m_pRenderWindow( NULL )
 {
@@ -56,7 +57,7 @@ bool GameImp::Load()
 	Config::Load( "Data/Configs.txt" );
 
 	sf::Vector2u size = Config::GetScreenSize(); 
-	m_pRenderWindow = newAPI sf::RenderWindow(sf::VideoMode(size.x, size.y), "Y.O.G.O. Game");
+	m_pRenderWindow = new sf::RenderWindow(sf::VideoMode(size.x, size.y), "Y.O.G.O. Game");
 
 	return true;
 }
