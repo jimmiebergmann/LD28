@@ -3,6 +3,10 @@
 #include <iostream>
 #include <Entity.h>
 #include <SFML/Graphics/Sprite.hpp>
+#include <Rabbit.h>
+#include <Tent.h>
+#include <Resources.h>
+
 #include <MemoryLeak.h>
 
 // Private static
@@ -97,7 +101,8 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
-
+	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
+	m_entitys.push_back(new Tent(sf::Vector2f(0, 32)));
 	return true;
 }
 
@@ -119,7 +124,13 @@ void GameImp::Unload()
 		delete m_ppCollisionData;
 		m_ppCollisionData = NULL;
 	}
+	for(EntityVector::size_type i = 0; i < m_entitys.size( ); i++ )
+	{
+		delete m_entitys[ i ];
+	}
+	m_entitys.clear();
 
+	Resources::UnloadResources();
 }
 
 void GameImp::Update( float p_DeltaTime )

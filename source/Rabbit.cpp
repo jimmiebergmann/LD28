@@ -8,14 +8,15 @@
 
 Rabbit::Rabbit(const sf::Vector2f p_position) :
 	m_position(p_position),
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Rabbit.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/RabbitTest.png"))) 
 {
 	m_pSprite->setPosition(m_position);
 }
 
 Rabbit::~Rabbit()
 {
-
+	delete m_pSprite;
+	m_pSprite = 0;
 }
 
 void Rabbit::Update(Game * p_pGame, float p_deltaTime)

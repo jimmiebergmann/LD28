@@ -6,14 +6,15 @@
 
 Tent::Tent(const sf::Vector2f p_position) :
 	m_position(p_position),
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Tent.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/RabbitTest.png"))) 
 {
 	m_pSprite->setPosition(m_position);
 }
 
 Tent::~Tent()
 {
-
+	delete m_pSprite;
+	m_pSprite = 0;
 }
 
 void Tent:: Update(Game * p_pGame, float p_deltaTime)
