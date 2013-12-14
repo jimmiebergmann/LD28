@@ -1,8 +1,10 @@
 #ifndef GAME_ENTITY_H
 #define GAME_ENTITY_H
 
-#include <SFML\Graphics.hpp>
-
+namespace sf 
+{
+	class Sprite;
+}
 class Game;
 
 class Entity
