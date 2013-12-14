@@ -1,5 +1,7 @@
 #include <Stone.h>
 
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
 
 Stone::Stone(sf::Vector2f p_position)
 {

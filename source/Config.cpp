@@ -2,6 +2,9 @@
 #include <fstream>
 #include <iostream>
 
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
+
 sf::Vector2u Config::s_ScreenSize( 800, 600 );
 
 

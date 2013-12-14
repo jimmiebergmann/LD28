@@ -5,6 +5,9 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <MemoryLeak.h>
 
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
+
 // Private static
 const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 35, 25 );
 

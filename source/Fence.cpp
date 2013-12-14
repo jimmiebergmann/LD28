@@ -1,5 +1,7 @@
 #include <Fence.h>
 
+// MemoryLeak.h filen !ALLTID SIST!
+#include <MemoryLeak.h>
 
 Fence::Fence(sf::Vector2f p_position)
 {
