@@ -25,7 +25,7 @@ TurretBullet::~TurretBullet()
 void TurretBullet::Update( Game * p_pGame, float p_deltaTime)
 {
 
-	sf::Vector2f diraction = m_pEnemyTarget->GetSprite()->getPosition() + m_pEnemyTarget->GetSprite()->getGlobalBounds().width - m_pSprite->getPosition();
+	sf::Vector2f diraction = m_pEnemyTarget->GetSprite()->getPosition() - m_pSprite->getPosition();
 	float len = std::sqrt(diraction.x * diraction.x + diraction.y * diraction.y);
 	if (len < 32.0f) {
 		//alive = false;
