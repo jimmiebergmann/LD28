@@ -25,7 +25,7 @@ void Tree::Update( Game * p_pGame, float p_deltaTime )
 	//Update
 }
 
-void Tree::Collide( Game * p_pGame, const Entity * p_pOther )
+void Tree::Collide( Game * p_pGame, Entity * p_pOther )
 {
 	//Collide
 }
@@ -40,8 +40,8 @@ Entity::eType Tree::GetType( ) const
 	return Type_Tree;
 }
 
-void Tree::addDamage(int p_damage) {
-	;
+int Tree::addDamage(int p_damage) {
+	return 0;
 }
 
 int Tree::getHealth() const {

@@ -23,7 +23,7 @@ void Stone::Update( Game * p_pGame, float p_deltaTime )
 	//Update
 }
 
-void Stone::Collide( Game * p_pGame, const Entity * p_pOther)
+void Stone::Collide( Game * p_pGame, Entity * p_pOther)
 {
 	//Collide
 }
@@ -37,8 +37,8 @@ Entity::eType Stone::GetType( ) const
 {
 	return Type_Stone;
 }
-void Stone::addDamage(int p_damage) {
-	;
+int Stone::addDamage(int p_damage) {
+	return 0;
 }
 
 int Stone::getHealth() const {
