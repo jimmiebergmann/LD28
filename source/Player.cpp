@@ -85,6 +85,8 @@ void Player::Collide(Game * p_pGame, const Entity * p_pOther)
 
 }
 
+
+
 sf::Sprite* Player::GetSprite( ) const
 {
 	return m_pCurrentAnimation->getSprite();

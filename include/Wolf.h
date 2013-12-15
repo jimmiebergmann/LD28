@@ -5,6 +5,8 @@
 
 #include <SFML\System\Vector2.hpp>
 
+class Animation;
+
 class Wolf : public Enemy
 {
 	
@@ -26,9 +28,11 @@ public:
 
 private:
 
-	sf::Vector2f m_position;
-	sf::Sprite * m_pSprite;
-
+	Animation* m_pWalkUp;
+	Animation* m_pWalkDown;
+	Animation* m_pWalkLeft;
+	Animation* m_pWalkRight;
+	Animation* m_pCurrentAnimation;
 };
 
 
