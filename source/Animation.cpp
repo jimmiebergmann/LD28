@@ -57,4 +57,3 @@ sf::Sprite* Animation::getSprite() const
 {
 	return m_pSprite;
 }
-

@@ -6,14 +6,11 @@
 #include <Rabbit.h>
 #include <Tent.h>
 #include <Resources.h>
-<<<<<<< HEAD
 #include <Player.h>
-=======
 #include <Stone.h>
 #include <Tree.h>
 #include <Fence.h>
 #include <Trap.h>
->>>>>>> 07e73c67f75277b35ebce8ef38571477a5883c22
 
 #include <MemoryLeak.h>
 
