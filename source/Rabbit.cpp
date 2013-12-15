@@ -10,7 +10,7 @@
 Rabbit::Rabbit(const sf::Vector2f p_position) :
 	m_pMoveAnimation(new Animation("Data/Textures/RabbitMovingTest.png", 200, 2)),
 	m_pIdleAnimation(new Animation("Data/Textures/RabbitTest.png", 200, 1)),
-	m_pCurrentAnimation(0)
+	m_pCurrentAnimation(NULL)
 {
 	m_pCurrentAnimation = m_pIdleAnimation;
 	m_pCurrentAnimation->setPosition(p_position);
@@ -25,8 +25,8 @@ Rabbit::~Rabbit()
 	}
 	delete m_pIdleAnimation;
 	delete m_pMoveAnimation;
-	m_pIdleAnimation = 0;
-	m_pMoveAnimation = 0;
+	m_pIdleAnimation = NULL;
+	m_pMoveAnimation = NULL;
 }
 
 void Rabbit::Update(Game * p_pGame, float p_deltaTime)
