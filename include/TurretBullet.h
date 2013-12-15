@@ -10,7 +10,7 @@ class TurretBullet : public Bullet
 
 public:
 
-	TurretBullet(const sf::Vector2f p_position);
+	TurretBullet(const sf::Vector2f p_position, Entity * p_enemyTarget);
 	virtual ~TurretBullet();
 
 	// Normal functions
@@ -20,8 +20,10 @@ public:
 	// Get function
 	virtual sf::Sprite * GetSprite( ) const;
 	virtual Entity::eType GetType() const;
+
 private:
 
+	Entity * m_pEnemyTarget;
 	sf::Sprite * m_pSprite;
 
 };
