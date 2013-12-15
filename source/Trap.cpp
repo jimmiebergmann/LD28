@@ -27,7 +27,6 @@ void Trap:: Update(Game * p_pGame, float p_deltaTime)
 	}
 
 
-
 }
 
 void Trap::Collide(Game * p_pGame, Entity * p_pOther)

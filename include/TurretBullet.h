@@ -26,8 +26,9 @@ public:
 
 private:
 
-	Entity * m_pEnemyTarget;
+	sf::Vector2f direction;
 	sf::Sprite * m_pSprite;
+	int m_frameTimer;
 	bool m_alive;
 	int m_health;
 
