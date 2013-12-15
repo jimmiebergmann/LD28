@@ -16,8 +16,13 @@ public:
 	virtual void Update( Game * p_pGame, float p_deltaTime );
 	virtual void Collide( Game * p_pGame, const Entity * p_pOther );
 
+	void Attack( Game * p_pGame );
+
 	virtual sf::Sprite * GetSprite( ) const;
 	virtual eType GetType( ) const;
+
+
+
 
 private:
 

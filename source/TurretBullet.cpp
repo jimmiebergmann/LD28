@@ -12,11 +12,17 @@ TurretBullet::TurretBullet(sf::Vector2f p_position) :
 
 TurretBullet::~TurretBullet()
 {
-	// Shall I unload Texture here?
+	if( m_pSprite )
+	{
+		delete m_pSprite;
+		m_pSprite = NULL;
+	}
 }
 
 void TurretBullet::Update( Game * p_pGame, float p_deltaTime)
 {
+
+
 	//Update
 }
 
