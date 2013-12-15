@@ -13,12 +13,9 @@ Wolf::Wolf(const sf::Vector2f p_position) :
 	m_pWalkLeft(new Animation("Data/Textures/wolf_left.png", 200, 2)),
 	m_pWalkRight(new Animation("Data/Textures/wolf_right.png", 200, 2)),
 	m_pCurrentAnimation(NULL),
-<<<<<<< HEAD
-	m_health(1)
-=======
-	m_health(3),
+	m_health(1),
 	m_alive(true)
->>>>>>> 1bafd731205d83b1ab2aa4a180b5ea550d44937f
+
 {
 	int a = rand() % 4;
 	Animation * ani[4] = {m_pWalkUp, m_pWalkDown, m_pWalkLeft, m_pWalkRight}; 
