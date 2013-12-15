@@ -26,9 +26,9 @@ void TurretBullet::Update( Game * p_pGame, float p_deltaTime)
 	int X = m_pEnemyTarget->GetSprite()->getPosition().x;
 	int	Y = m_pEnemyTarget->GetSprite()->getPosition().y;
 
-	sf::Vector2f katt = m_pEnemyTarget->GetSprite()->getPosition() - m_pSprite->getPosition();
+	sf::Vector2f diraction = m_pEnemyTarget->GetSprite()->getPosition() - m_pSprite->getPosition();
 	
-	m_pSprite->move(katt);
+	m_pSprite->move(diraction);
 	
 	//Update
 }
