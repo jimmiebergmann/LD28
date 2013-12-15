@@ -237,7 +237,7 @@ void GameImp::Update( float p_DeltaTime )
 				m_entitys.push_back( new Wolf( s_wolfSpawnPoints[ i ] ) ); 
 			}
 
-
+			m_spawningWolfs = false;
 			m_wolfSpawnTimer.restart( );
 		}
 	}
@@ -260,17 +260,22 @@ void GameImp::Update( float p_DeltaTime )
 			if( rect0.intersects( rect1 ) )
 			{
 				m_entitys[ i ]->Collide( this, m_entitys[ j ] );
+				//m_entitys[ j ]->Collide( this, m_entitys[ i ] );
 			}
 		}
 	}
 		// Update all the entities
 	EntityVector tempVector;
+
 	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
 	{
 		Entity & entity = *m_entitys[ i ];
-		if(entity.getAlive()) {
+		if(entity.getAlive()) 
+		{
 			tempVector.push_back(m_entitys[ i ]);
-		} else if (m_entitys[ i ] != m_pPlayer) {
+		}
+		else if (m_entitys[ i ] != m_pPlayer) 
+		{
 			delete m_entitys[ i ];
 		}
 	}

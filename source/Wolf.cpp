@@ -70,13 +70,12 @@ void Wolf::Collide(Game * p_pGame, Entity * p_pOther)
 	switch (p_pOther->GetType())
 	{
 	case Type_Bullet:
-	if( p_pOther->getAlive() == true)
+		if(( p_pOther->getAlive() == true) && (m_alive == true))
 		{
-			p_pOther->addDamage( 100 );
+			p_pOther->addDamage(1);
 			this->addDamage(1);
 		}
 		break;
-
 	default:
 		break;
 	}
@@ -105,9 +104,9 @@ int Wolf::addDamage(int p_damage)
 }
 
 int Wolf::getHealth() const {
-	return true;
+	return m_health;
 }
 
 bool Wolf::getAlive() const {
-	return true;
+	return m_alive;
 }
