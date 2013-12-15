@@ -27,7 +27,6 @@ const sf::Vector2f GameImp::s_wolfSpawnPoints[ 3 ] =
 	sf::Vector2f( 2 * Config::GetTileSize( ), ( s_mapSize.y - 3 ) * Config::GetTileSize( ) )
 };
 
-static float g_fps = 0;
 sf::Clock g_dayCycle;
 
 GameImp::GameImp( ) :
@@ -63,12 +62,14 @@ int GameImp::Run( )
 	InitMemoryLeak();
 
 	// Load the game
-	if( !Load( ) ) {
+	if( !Load( ) )
+	{
 		return Error(sf::String("Could not load resouced"));
 	}
 
 	int framCount = 0;
 	sf::Clock clocl;
+	float fps = 0;
 	// Start the game loop
 	while (m_pRenderWindow->isOpen())
 	{
@@ -80,10 +81,10 @@ int GameImp::Run( )
 		}
 		framCount++;
 		if (clocl.getElapsedTime().asSeconds() > 0.5f) {
-			g_fps = framCount / clocl.getElapsedTime().asSeconds();
+			fps = framCount / clocl.getElapsedTime().asSeconds();
 			clocl.restart();
 			framCount = 0;
-			std::cout << g_fps << std::endl;
+			std::cout << fps << std::endl;
 		}
 		// Update the game
 		Update( 0.0f );
@@ -253,15 +254,27 @@ void GameImp::Update( float p_DeltaTime )
 	{
 		for( unsigned int j = i + 1; j < m_entitys.size( ); j++ )
 		{
-			//sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
-			//sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
+			sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
+			sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
 
-			//if( rect0.intersects( rect1 ) )
+			if( rect0.intersects( rect1 ) )
 			{
-				//m_entitys[ i ]->Collide( this, m_entitys[ j ] );
+				m_entitys[ i ]->Collide( this, m_entitys[ j ] );
 			}
 		}
 	}
+		// Update all the entities
+	EntityVector tempVector;
+	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
+	{
+		Entity & entity = *m_entitys[ i ];
+		if(entity.getAlive()) {
+			tempVector.push_back(m_entitys[ i ]);
+		} else if (m_entitys[ i ] != m_pPlayer) {
+			delete m_entitys[ i ];
+		}
+	}
+	m_entitys = tempVector;
 }
 
 void GameImp::HandleEvent( sf::Event p_event)
