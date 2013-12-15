@@ -120,22 +120,22 @@ void Player::Attack(Game * p_pGame )
 {
 	if(m_eCurrentDirection == eDirection::Type_Up)
 	{
-		pWeaponCollision = new sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, 32), sf::Vector2f(32, 32));
+		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, 32), sf::Vector2f(32, 32));
 	}
 
 	else if(m_eCurrentDirection == eDirection::Type_Down)
 	{
-		pWeaponCollision = new sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, -32), sf::Vector2f(32, 32));
+		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, -32), sf::Vector2f(32, 32));
 
 	}
 	else if(m_eCurrentDirection == eDirection::Type_Right)
 	{
-		pWeaponCollision = new sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(32, 0), sf::Vector2f(32, 32));
+		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(32, 0), sf::Vector2f(32, 32));
 
 	}
 	else if(m_eCurrentDirection == eDirection::Type_Left)
 	{
-		pWeaponCollision = new sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(32, 0), sf::Vector2f(32, 32));
+		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(32, 0), sf::Vector2f(32, 32));
 
 	}
 	
@@ -145,7 +145,7 @@ void Player::Attack(Game * p_pGame )
 		if((*i)->GetType() == Entity::eType::Type_Wolf)
 		{
 			sf::FloatRect EntityCollision = (*i)->GetSprite()->getGlobalBounds();
-			if(pWeaponCollision->intersects(EntityCollision) == true)
+			if( m_pWeaponCollision.intersects(EntityCollision) == true)
 			{
 				(*i)->addDamage(ATTACKDAMAGE);
 			}

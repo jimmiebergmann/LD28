@@ -6,6 +6,7 @@
 #include <MemoryLeak.h>
 
 sf::Vector2u Config::s_ScreenSize( 800, 600 );
+int Config::s_TileSize =  32;
 
 
 // Public functions
@@ -21,6 +22,7 @@ bool Config::Load( const char * p_pFilename )
 
 	// Temporary varaibles
 	sf::Vector2u screenSize;
+	int tileSize = 0;
 
 	// Read the screen size
 	if( fin.eof( ) )
@@ -36,6 +38,13 @@ bool Config::Load( const char * p_pFilename )
 	}
 	fin >> screenSize.y;
 
+	if( fin.eof( ) )
+	{
+		std::cout << "[Config::Load] Incomplete config file(2)." << std::endl;
+		return false;
+	}
+	fin >> tileSize;
+
 	// Check for weird inputs
 	// ...
 	if( screenSize.x > 3000 || screenSize.y > 3000 )
@@ -44,8 +53,15 @@ bool Config::Load( const char * p_pFilename )
 		return false;
 	}
 
+	if( tileSize > 128 )
+	{
+		std::cout << "[Config::Load] Too large tile." << std::endl;
+		return false;
+	}
+
 	// Everything is okey now
 	s_ScreenSize = screenSize;
+	s_TileSize = tileSize;
 
 	return true;
 }
@@ -54,4 +70,9 @@ bool Config::Load( const char * p_pFilename )
 sf::Vector2u Config::GetScreenSize( )
 {
 	return s_ScreenSize;
+}
+
+int Config::GetTileSize( )
+{
+	return s_TileSize;
 }

@@ -13,11 +13,13 @@ public:
 
 	// Get functions
 	static sf::Vector2u GetScreenSize( );
+	static int GetTileSize( );
 
 
 private:
 
 	static sf::Vector2u s_ScreenSize;
+	static int s_TileSize;
 
 };
 
