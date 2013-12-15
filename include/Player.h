@@ -19,6 +19,7 @@ public:
 	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
 	virtual void addDamage(int p_damage);
 	void Attack(Game * p_pGame);
+	void AddObject(Game * p_pGame);
 
 	// Get function
 	virtual int getHealth() const;
