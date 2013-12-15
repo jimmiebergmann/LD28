@@ -6,11 +6,11 @@
 #include <MemoryLeak.h>
 
 
-static const int g_TurretRange = 500;
-static sf::Clock a;
+static const int g_TurretRange = 100;
 
 Turret::Turret(sf::Vector2f p_position) :
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Turret.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Turret.png"))),
+	m_turretTimer(0)
 {
 	m_pSprite->setPosition( p_position );
 }
@@ -30,11 +30,13 @@ void Turret::Update( Game * p_pGame, float p_deltaTime)
 	
 
 	//Update
-	if (a.getElapsedTime().asSeconds() > 1.0f)
+	if (m_turretTimer > 60)
 	{
 		Attack( p_pGame );
-		a.restart();
+		m_turretTimer = 0;
 	}
+
+	m_turretTimer++;
 }
 
 void Turret::Collide( Game * p_pGame, const Entity * p_pOther )

@@ -22,6 +22,19 @@ void Trap:: Update(Game * p_pGame, float p_deltaTime)
 
 void Trap::Collide(Game * p_pGame, const Entity * p_pOther)
 {
+	if( p_pOther->GetType() ==  Type_Player /*&&  p_pOther->GetDayTime() == DAY */ )
+	{
+		m_ActiveTrap = true;
+	}
+
+	if( p_pOther->GetType() ==  Type_Wolf )
+	{
+		m_ActiveTrap = false;
+		
+	}
+
+
+
 	switch (p_pOther->GetType())
 	{
 	default:
@@ -43,7 +56,7 @@ void Trap::addDamage(int p_damage) {
 }
 
 int Trap::getHealth() const {
-	return true;
+	return 0;
 }
 
 bool Trap::getAlive() const {

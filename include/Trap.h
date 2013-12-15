@@ -26,6 +26,8 @@ public:
 private:
 
 	sf::Sprite * m_pSprite;
+	int m_health;
+	bool m_ActiveTrap;
 
 };
 

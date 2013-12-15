@@ -31,6 +31,7 @@ public:
 
 private:
 
+	int m_turretTimer;
 	sf::Sprite * m_pSprite;
 	
 };
