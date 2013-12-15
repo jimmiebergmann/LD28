@@ -5,6 +5,8 @@
 
 #include <SFML\System\Vector2.hpp>
 
+class Animation;
+
 class Rabbit : public Entity
 {
 
@@ -22,7 +24,9 @@ public:
 	virtual Entity::eType GetType() const;
 private:
 
-	sf::Sprite * m_pSprite;
+	Animation *		m_pMoveAnimation;
+	Animation *		m_pIdleAnimation;
+	Animation *		m_pCurrentAnimation;
 
 };
 

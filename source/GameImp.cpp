@@ -6,12 +6,19 @@
 #include <Rabbit.h>
 #include <Tent.h>
 #include <Resources.h>
+#include <Player.h>
+#include <Stone.h>
+#include <Tree.h>
+#include <Fence.h>
+#include <Trap.h>
 
 #include <MemoryLeak.h>
 
 // Private static
 const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 35, 25 );
 const sf::Color GameImp::s_clearColor( 56, 215, 79, 255 );
+
+static float g_fps = 0;
 
 GameImp::GameImp( ) :
 	m_pRenderWindow( NULL ),
@@ -48,6 +55,8 @@ int GameImp::Run( )
 		return Error(sf::String("Could not load resouced"));
 	}
 
+	int framCount = 0;
+	sf::Clock clocl;
 	// Start the game loop
 	while (m_pRenderWindow->isOpen())
 	{
@@ -57,7 +66,13 @@ int GameImp::Run( )
 		{
 			HandleEvent( e );
 		}
-
+		framCount++;
+		if (clocl.getElapsedTime().asSeconds() > 0.5f) {
+			g_fps = framCount / clocl.getElapsedTime().asSeconds();
+			clocl.restart();
+			framCount = 0;
+			std::cout << g_fps << std::endl;
+		}
 		// Update the game
 		Update( 0.0f );
 
@@ -88,8 +103,10 @@ bool GameImp::Load()
 	Config::Load( "Data/Configs.txt" );
 
 	// Load the window
-	sf::Vector2u size = Config::GetScreenSize(); 
+	sf::Vector2u & size = Config::GetScreenSize(); 
 	m_pRenderWindow = new sf::RenderWindow(sf::VideoMode(size.x, size.y), "Y.O.G.O. Game");
+	
+	m_pRenderWindow->setFramerateLimit(60);
 
 	// Load the collision data
 	m_ppCollisionData = new bool * [ s_mapSize.x ];
@@ -101,8 +118,41 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
+	
+	for( unsigned int i = 0; i < s_mapSize.x; i++ )
+	{
+		for( unsigned int j = 0; j < s_mapSize.y; j++ )
+		{
+
+			int val = std::rand() % 10;
+			if (val == 9)
+			{
+				m_entitys.push_back(new Tent(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 8)
+			{
+				m_entitys.push_back(new Stone(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 7)
+			{
+				m_entitys.push_back(new Tree(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 6)
+			{
+				m_entitys.push_back(new Fence(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+			else if (val == 5)
+			{
+				m_entitys.push_back(new Trap(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+			}
+		}
+	}
+
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
-	m_entitys.push_back(new Tent(sf::Vector2f(0, 32)));
+	m_entitys.push_back(new Player(sf::Vector2f(200, 200)));
+	//sf::View t(m_pRenderWindow->getView());
+	//t.setSize(t.getSize() * 0.5f);
+	//m_pRenderWindow->setView(t);
 	return true;
 }
 
@@ -146,12 +196,12 @@ void GameImp::Update( float p_DeltaTime )
 	{
 		for( unsigned int j = i + 1; j < m_entitys.size( ); j++ )
 		{
-			sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
-			sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
+			//sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
+			//sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
 
-			if( rect0.intersects( rect1 ) )
+			//if( rect0.intersects( rect1 ) )
 			{
-				m_entitys[ i ]->Collide( this, m_entitys[ j ] );
+				//m_entitys[ i ]->Collide( this, m_entitys[ j ] );
 			}
 		}
 	}

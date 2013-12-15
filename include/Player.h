@@ -8,8 +8,9 @@
 class Player : public Entity
 {
 public:
-
+	//constructor and destructor
 	Player(sf::Vector2f position);
+	virtual ~Player();
 
 	//Normal functions
 	virtual void Update(Game * p_pGame, float p_deltaTime);
@@ -19,14 +20,17 @@ public:
 	// Get Functions
 	virtual sf::Sprite * GetSprite( ) const;
 	virtual Entity::eType GetType ( ) const;
+
 private:
+
 	sf::Vector2f m_Postition;
-	Animation* m_Idle;
-	Animation* m_WalkUp;
-	Animation* m_WalkDown;
-	Animation* m_WalkLeft;
-	Animation* m_WalkRight;
-	Animation* m_CurrentAnimation;
+
+	Animation* m_pIdle;
+	Animation* m_pWalkUp;
+	Animation* m_pWalkDown;
+	Animation* m_pWalkLeft;
+	Animation* m_pWalkRight;
+	Animation* m_pCurrentAnimation;
 };
 
 #endif
