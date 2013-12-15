@@ -28,7 +28,7 @@ void TurretBullet::Update( Game * p_pGame, float p_deltaTime)
 
 	sf::Vector2f diraction = m_pEnemyTarget->GetSprite()->getPosition() - m_pSprite->getPosition();
 	
-	m_pSprite->move(diraction);
+	//m_pSprite->move(diraction);
 	
 	//Update
 }

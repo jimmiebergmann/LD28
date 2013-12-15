@@ -9,7 +9,7 @@
 static const int g_TurretRange = 500;
 
 Turret::Turret(sf::Vector2f p_position) :
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/TurretBullet.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Turret.png"))) 
 {
 	m_pSprite->setPosition( p_position );
 }
@@ -59,7 +59,7 @@ void Turret::Attack( Game * p_pGame )
 	// This will happen if the enemy is 
 	if( g_TurretRange * g_TurretRange > CurrentClosestEnemyDistance * CurrentClosestEnemyDistance)
 	{
-	//	p_pGame->CreateTurretullet(pCurrentClosestEnemy);
+	//	p_pGame->(pCurrentClosestEnemy);
 	}
 
 }
