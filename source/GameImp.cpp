@@ -135,10 +135,11 @@ bool GameImp::Load()
 	}
 	m_pPlayer = new Player(sf::Vector2f(200, 200));
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
+	m_entitys.push_back(new Stone(sf::Vector2f(5*32, 5*32)));
 	m_entitys.push_back(m_pPlayer);
 	//m_entitys.push_back(new Wolf(sf::Vector2f(700, 700)));
 
-	m_entitys.push_back(new Tent(sf::Vector2f(6 * 32.0f, 6 * 32.0f))); 
+	m_entitys.push_back(new Tent(sf::Vector2f(32.0f,32.0f))); 
 
 	/*for( unsigned int i = 0; i < s_mapSize.x; i++ )
 	{
@@ -179,6 +180,14 @@ bool GameImp::Load()
 	t.zoom( 1.0f / Config::GetZoom( ) );
 	m_pRenderWindow->setView(t);
 	return true;
+}
+
+void GameImp::addEntity( Entity * p_pEntity )
+{
+	m_entitys.push_back(p_pEntity);
+		int x = p_pEntity->GetSprite()->getPosition().x/32;
+		int y = p_pEntity->GetSprite()->getPosition().y/32;
+	m_ppCollisionData[x][y] = true;
 }
 
 void GameImp::Unload()

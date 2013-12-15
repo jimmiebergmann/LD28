@@ -18,6 +18,7 @@ public:
 	virtual ~GameImp( );
 
 	// virtual functions
+	virtual void addEntity( Entity * p_pEntity );
 	virtual EntityVector & GetEntities( );
 	virtual sf::Vector2u GetMapSize( ) const;
 	virtual bool GetCollisionData( const sf::Vector2u p_Coordinate ) const;

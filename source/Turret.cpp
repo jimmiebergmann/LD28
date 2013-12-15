@@ -48,9 +48,9 @@ void Turret::Attack( Game * p_pGame )
 {
 	float CurrentClosestEnemyDistance;
 	Entity * pCurrentClosestEnemy = NULL;
-	Game::EntityVector & vec1 = p_pGame->GetEntities();
+	const Game::EntityVector & vec1 = p_pGame->GetEntities();
 //	for(BoltVector::iterator i = temp.begin(); i != temp.end(); i++)
-	for(Game::EntityVector::iterator i = vec1.begin(); i != vec1.end(); i++)
+	for(Game::EntityVector::const_iterator i = vec1.begin(); i != vec1.end(); i++)
 	{
 		if((*i)->GetType() == Type_Wolf)
 		{
@@ -77,7 +77,7 @@ void Turret::Attack( Game * p_pGame )
 		// This will happen if the enemy is 
 		if(g_TurretRange * g_TurretRange > CurrentClosestEnemyDistance)
 		{
-			vec1.push_back(new TurretBullet(m_pSprite->getPosition() + sf::Vector2f(16, 16), pCurrentClosestEnemy));
+			p_pGame->addEntity(new TurretBullet(m_pSprite->getPosition() + sf::Vector2f(16, 16), pCurrentClosestEnemy));
 		}
 	}
 }

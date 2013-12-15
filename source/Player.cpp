@@ -1,5 +1,7 @@
 #include <Player.h>
 #include <MemoryLeak.h>
+#include <Stone.h>
+#include <Turret.h>
 
 static float PLAYERSPEED = 0.6;
 static float ATTACKDAMAGE = 1;
@@ -44,8 +46,9 @@ Player::~Player()
 
 void Player::Update(Game * p_pGame, float p_deltaTime)
 {
-	m_pCurrentAnimation = m_pIdle;
 
+	AddObject(p_pGame);
+	m_pCurrentAnimation = m_pIdle;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		m_Postition.y-=PLAYERSPEED;
@@ -139,8 +142,8 @@ void Player::Attack(Game * p_pGame )
 
 	}
 	
-	Game::EntityVector& vec1 = p_pGame->GetEntities();
-	for(Game::EntityVector::iterator i = vec1.begin(); i != vec1.end(); i++)
+	const Game::EntityVector& vec1 = p_pGame->GetEntities();
+	for(Game::EntityVector::const_iterator i = vec1.begin(); i != vec1.end(); i++)
 	{
 		if((*i)->GetType() == Entity::eType::Type_Wolf)
 		{
@@ -156,6 +159,33 @@ void Player::Attack(Game * p_pGame )
 
 
 	
+}
+
+void Player::AddObject(Game * p_pGame)
+{
+	// add a stone
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))
+	{
+
+		int x = m_Postition.x/32;
+		int y = m_Postition.y/32;
+		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
+		{
+			p_pGame->addEntity( new Stone(sf::Vector2f(x*32,y*32)));
+		}
+	}
+
+	//add a turret
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))
+	{
+		int x = m_Postition.x/32;
+		int y = m_Postition.y/32;
+		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
+		{
+		p_pGame->addEntity( new Turret(sf::Vector2f(x*32,y*32)));
+		}
+	}
+
 }
 
 
