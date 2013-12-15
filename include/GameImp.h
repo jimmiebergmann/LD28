@@ -18,6 +18,7 @@ public:
 	virtual ~GameImp( );
 
 	// virtual functions
+	virtual void addEntity( Entity * p_pEntity );
 	virtual EntityVector & GetEntities( );
 	virtual sf::Vector2u GetMapSize( ) const;
 	virtual bool GetCollisionData( const sf::Vector2u p_Coordinate ) const;
@@ -40,6 +41,7 @@ private:
 	void Update( float p_DeltaTime );
 	void HandleEvent( sf::Event p_event);
 	void Render( );
+	sf::Vector2f CameraUpdate( );
 
 	// Private static
 	static const sf::Vector2u s_mapSize;

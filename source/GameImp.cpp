@@ -17,6 +17,7 @@
 #include <MemoryLeak.h>
 
 // Private static
+
 const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 16, 16 );
 const sf::Color GameImp::s_clearColor( 56, 215, 79, 255 );
 const sf::Vector2f GameImp::s_wolfSpawnPoints[ 3 ] =
@@ -176,9 +177,14 @@ bool GameImp::Load()
 	m_entitys.push_back(new Turret(sf::Vector2f(60, 60)));
 
 	sf::View t(m_pRenderWindow->getView());
-	t.setSize(t.getSize() * 0.5f);
+	t.zoom( 1.0f / Config::GetZoom( ) );
 	m_pRenderWindow->setView(t);
 	return true;
+}
+
+void GameImp::addEntity( Entity * p_pEntity )
+{
+	m_entitys.push_back(p_pEntity);
 }
 
 void GameImp::Unload()
@@ -205,7 +211,7 @@ void GameImp::Unload()
 	}
 	m_entitys.clear();
 
-	Resources::UnloadResources();
+	Resources::Unload();
 }
 
 void GameImp::Update( float p_DeltaTime )
@@ -272,7 +278,9 @@ void GameImp::HandleEvent( sf::Event p_event)
 
 void GameImp::Render( )
 {
-	m_pRenderWindow->setView(sf::View(m_pPlayer->GetSprite()->getPosition(), m_pRenderWindow->getView().getSize()));
+	m_pRenderWindow->setView(sf::View(CameraUpdate(), m_pRenderWindow->getView().getSize()));
+
+	
 
 	m_mapColor = sf::Color(127, 127, 127, 255);
 	float dayNight = g_dayCycle.getElapsedTime().asSeconds();
@@ -315,4 +323,38 @@ void GameImp::Render( )
 	}
 
 	m_pRenderWindow->display( );
+}
+
+
+sf::Vector2f GameImp::CameraUpdate( )
+{
+
+	int ViewX = m_pPlayer->GetSprite()->getPosition().x;
+	
+	if(m_pPlayer->GetSprite()->getPosition().x < Config::GetScreenSize().x / (Config::GetZoom( ) * 2 ))
+	{
+		ViewX = Config::GetScreenSize().x / (Config::GetZoom( ) * 2 );
+	}
+
+	
+	if(m_pPlayer->GetSprite()->getPosition().x > s_mapSize.x * Config::GetTileSize() - Config::GetScreenSize().x / (Config::GetZoom( ) * 2 ))
+	{
+		ViewX = s_mapSize.x * Config::GetTileSize() - Config::GetScreenSize().x / (Config::GetZoom( ) * 2 );
+	}
+
+	
+	int ViewY = m_pPlayer->GetSprite()->getPosition().y;
+	
+	if(m_pPlayer->GetSprite()->getPosition().y < Config::GetScreenSize().y / (Config::GetZoom( ) * 2 ))
+	{
+		ViewY = Config::GetScreenSize().y / (Config::GetZoom( ) * 2 );
+	}
+
+	if(m_pPlayer->GetSprite()->getPosition().y > s_mapSize.y * Config::GetTileSize() - Config::GetScreenSize().y / (Config::GetZoom( ) * 2 ))
+	{
+		ViewY = s_mapSize.y * Config::GetTileSize() - Config::GetScreenSize().y / (Config::GetZoom( ) * 2 );
+	}
+	
+
+	return sf::Vector2f(ViewX, ViewY);
 }
