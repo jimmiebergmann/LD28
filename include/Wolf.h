@@ -34,6 +34,7 @@ private:
 	Animation* m_pWalkRight;
 	Animation* m_pCurrentAnimation;
 
+	bool m_alive;
 	int m_health;
 
 };
