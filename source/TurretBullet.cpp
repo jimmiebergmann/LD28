@@ -47,3 +47,15 @@ Entity::eType TurretBullet::GetType( ) const
 {
 	return Type_Turret;
 }
+
+void TurretBullet::addDamage(int p_damage) {
+	;
+}
+
+int TurretBullet::getHealth() const {
+	return true;
+}
+
+bool TurretBullet::getAlive() const {
+	return true;
+}

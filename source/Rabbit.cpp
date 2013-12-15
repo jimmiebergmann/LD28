@@ -64,3 +64,14 @@ sf::Sprite * Rabbit:: GetSprite( ) const
 {
 	return m_pCurrentAnimation->getSprite();
 }
+void Rabbit::addDamage(int p_damage) {
+	;
+}
+
+int Rabbit::getHealth() const {
+	return true;
+}
+
+bool Rabbit::getAlive() const {
+	return true;
+}

@@ -16,10 +16,13 @@ public:
 	// Normal functions
 	virtual void Update(Game * p_pGame, float p_deltaTime);
 	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
+	virtual void addDamage(int p_damage);
 
 	// Get function
+	virtual int getHealth() const;
+	virtual bool getAlive() const;
 	virtual sf::Sprite * GetSprite( ) const;
-	virtual Entity::eType GetType() const;
+	virtual eType GetType( ) const;
 private:
 
 	sf::Sprite * m_pSprite;

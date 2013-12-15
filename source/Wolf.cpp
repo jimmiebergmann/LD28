@@ -44,3 +44,15 @@ sf::Sprite * Wolf:: GetSprite( ) const
 {
 	return m_pSprite;
 }
+
+void Wolf::addDamage(int p_damage) {
+	;
+}
+
+int Wolf::getHealth() const {
+	return true;
+}
+
+bool Wolf::getAlive() const {
+	return true;
+}

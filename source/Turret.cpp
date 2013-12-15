@@ -74,3 +74,15 @@ Entity::eType Turret::GetType( ) const
 {
 	return Type_Turret;
 }
+
+void Turret::addDamage(int p_damage) {
+	;
+}
+
+int Turret::getHealth() const {
+	return true;
+}
+
+bool Turret::getAlive() const {
+	return true;
+}

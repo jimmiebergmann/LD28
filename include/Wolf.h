@@ -13,14 +13,16 @@ public:
 	Wolf(const sf::Vector2f p_position);
 	virtual ~Wolf();
 
-
 	// Normal functions
-	virtual void Update(Game * p_pGame, float p_deltaTime) = 0;
-	virtual void Collide(Game * p_pGame, const Entity * p_pOther) = 0;
+	virtual void Update(Game * p_pGame, float p_deltaTime);
+	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
+	virtual void addDamage(int p_damage);
 
 	// Get function
-	virtual sf::Sprite * GetSprite( ) const = 0;
-	virtual eType GetType( ) const = 0;
+	virtual int getHealth() const;
+	virtual bool getAlive() const;
+	virtual sf::Sprite * GetSprite( ) const;
+	virtual eType GetType( ) const;
 
 private:
 

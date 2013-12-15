@@ -37,3 +37,15 @@ Entity::eType Fence::GetType( ) const
 {
 	return Type_Fence;
 }
+
+void Fence::addDamage(int p_damage) {
+	;
+}
+
+int Fence::getHealth() const {
+	return true;
+}
+
+bool Fence::getAlive() const {
+	return true;
+}
