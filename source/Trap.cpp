@@ -17,25 +17,37 @@ Trap::~Trap()
 
 void Trap:: Update(Game * p_pGame, float p_deltaTime)
 {
+	if(m_activeTrap == true)
+	{
+		m_pSprite->setColor(sf::Color(255, 255, 255, 255));
+	}
+	else if(m_activeTrap == false)
+	{
+		m_pSprite->setColor(sf::Color(255, 255, 255, 100));
+	}
+
+
 
 }
 
 void Trap::Collide(Game * p_pGame, Entity * p_pOther)
 {
-	if( p_pOther->GetType() ==  Type_Player /*&&  p_pOther->GetDayTime() == DAY */ )
-	{
-		m_ActiveTrap = true;
-	}
-
-	if( p_pOther->GetType() ==  Type_Wolf )
-	{
-		m_ActiveTrap = false;
-		
-	}
-
-
 	switch (p_pOther->GetType())
 	{
+	case Type_Wolf:
+		if( p_pOther->getAlive() == true && m_activeTrap == true)
+		{
+			p_pOther->addDamage( 100 );
+			this->addDamage( 0 );	// 0 == Set trap to active
+		}
+	case Type_Player:
+		if( true /*p_pOther->GetDayTime() == DAY */ )
+		{
+			this->addDamage( 1 );	// 1 == Set trap to active
+		}
+
+	break;
+
 	default:
 		break;
 	}
@@ -50,14 +62,26 @@ sf::Sprite * Trap:: GetSprite( ) const
 {
 	return m_pSprite;
 }
-int Trap::addDamage(int p_damage) {
+int Trap::addDamage(int p_damage)
+{
+	if(p_damage == 0)
+	{
+		m_activeTrap = false;
+	}
+	else if(p_damage == 1)
+	{
+		m_activeTrap = true;
+	}
+
 	return 0;
 }
 
-int Trap::getHealth() const {
-	return 0;
+int Trap::getHealth() const 
+{
+	return m_health;
 }
 
-bool Trap::getAlive() const {
-	return true;
+bool Trap::getAlive() const 
+{
+	return m_alive;
 }
