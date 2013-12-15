@@ -4,6 +4,7 @@
 #include <Trap.h>
 #include <iostream>
 #include <MemoryLeak.h>
+
 static float PLAYERSPEED = 0.6;
 static float ATTACKDAMAGE = 1;
 static float ATTACK_COOLDOWN = 0.3f;
@@ -135,47 +136,43 @@ void Player::Attack(Game * p_pGame )
 	m_time = m_attackTime.asSeconds();
 
 
-	if(m_eCurrentDirection == eDirection::Type_Up && m_time > ATTACK_COOLDOWN)
+	if(m_eCurrentDirection == eDirection::Type_Up )
 	{
 		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, -32), sf::Vector2f(32, 32));
-		std::cout<< "Attacked" << std::endl;
-		m_attackClock.restart();
 	}
-
-	else if(m_eCurrentDirection == eDirection::Type_Down && m_time > ATTACK_COOLDOWN)
+	else if(m_eCurrentDirection == eDirection::Type_Down )
 	{
 		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, 32), sf::Vector2f(32, 32));
-		std::cout<< "Attacked" << std::endl;
-		m_attackClock.restart();
 	}
-	else if(m_eCurrentDirection == eDirection::Type_Right && m_time > ATTACK_COOLDOWN)
+	else if(m_eCurrentDirection == eDirection::Type_Right)
 	{
 		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(32, 0), sf::Vector2f(32, 32));
-		std::cout<< "Attacked" << std::endl;
-		m_attackClock.restart();
 	}
-	else if(m_eCurrentDirection == eDirection::Type_Left && m_time > ATTACK_COOLDOWN)
+	else if(m_eCurrentDirection == eDirection::Type_Left)
 	{
 		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(-32, 0), sf::Vector2f(32, 32));
-		std::cout<< "Attacked" << std::endl;
-		m_attackClock.restart();
+
 	}
 	
-	const Game::EntityVector& vec1 = p_pGame->GetEntities();
-	for(Game::EntityVector::const_iterator i = vec1.begin(); i != vec1.end(); i++)
+	if(m_time > ATTACK_COOLDOWN)
 	{
-		if((*i)->GetType() == Entity::eType::Type_Wolf)
+		const Game::EntityVector& vec1 = p_pGame->GetEntities();
+		for(Game::EntityVector::const_iterator i = vec1.begin(); i != vec1.end(); i++)
 		{
-			sf::FloatRect EntityCollision = (*i)->GetSprite()->getGlobalBounds();
-			if( m_pWeaponCollision.intersects(EntityCollision) == true)
+			if((*i)->GetType() == Entity::eType::Type_Wolf)
 			{
-				(*i)->addDamage(ATTACKDAMAGE);
+				sf::FloatRect EntityCollision = (*i)->GetSprite()->getGlobalBounds();
+				if( m_pWeaponCollision.intersects(EntityCollision) == true)
+				{
+					(*i)->addDamage(ATTACKDAMAGE);
+					break;
+				}
+
 			}
 
 		}
-
+		m_attackClock.restart();
 	}
-
 
 	
 }
