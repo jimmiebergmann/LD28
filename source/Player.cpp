@@ -197,8 +197,6 @@ void Player::AddObject(Game * p_pGame)
 		p_pGame->addEntity( new Trap(sf::Vector2f(x*32,y*32)));
 		}
 	}
-
-
 }
 
 
