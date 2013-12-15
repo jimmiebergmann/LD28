@@ -2,6 +2,7 @@
 #include <MemoryLeak.h>
 #include <Stone.h>
 #include <Turret.h>
+#include <Trap.h>
 
 static float PLAYERSPEED = 0.6;
 static float ATTACKDAMAGE = 1;
@@ -185,6 +186,18 @@ void Player::AddObject(Game * p_pGame)
 		p_pGame->addEntity( new Turret(sf::Vector2f(x*32,y*32)));
 		}
 	}
+
+	//add a trap
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))
+	{
+		int x = m_Postition.x/32;
+		int y = m_Postition.y/32;
+		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
+		{
+		p_pGame->addEntity( new Trap(sf::Vector2f(x*32,y*32)));
+		}
+	}
+
 
 }
 
