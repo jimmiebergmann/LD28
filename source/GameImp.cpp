@@ -11,6 +11,7 @@
 #include <Tree.h>
 #include <Fence.h>
 #include <Trap.h>
+#include <Wolf.h>
 
 #include <MemoryLeak.h>
 
@@ -150,6 +151,7 @@ bool GameImp::Load()
 
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
 	m_entitys.push_back(new Player(sf::Vector2f(200, 200)));
+	m_entitys.push_back(new Wolf(sf::Vector2f(700, 700)));
 	//sf::View t(m_pRenderWindow->getView());
 	//t.setSize(t.getSize() * 0.5f);
 	//m_pRenderWindow->setView(t);
@@ -221,7 +223,12 @@ void GameImp::HandleEvent( sf::Event p_event)
 
 void GameImp::Render( )
 {
-	m_pRenderWindow->clear( s_clearColor );
+	sf::Texture * tex = Resources::GetTexture("Data/Textures/Grass.png");
+	tex->setRepeated(true);
+	sf::Sprite backgrond(*tex, sf::IntRect(sf::Vector2i(), sf::Vector2i(m_pRenderWindow->getSize())));
+	
+	m_pRenderWindow->draw(backgrond);
+	//m_pRenderWindow->clear( s_clearColor );
 
 	// Render all the entities
 	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
