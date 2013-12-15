@@ -4,17 +4,17 @@
 // MemoryLeak.h filen !ALLTID SIST!
 #include <MemoryLeak.h>
 
-Animation::Animation(const std::string& filename, int timePerFrame, int numFrames) : 
-	m_timePerFrame(timePerFrame),
-	m_numFrames(numFrames),
+Animation::Animation(const std::string& p_filename, int p_timePerFrame, int p_numFrames) : 
+	m_timePerFrame(p_timePerFrame),
+	m_numFrames(p_numFrames),
 	m_currentFrame(0)
 {
 	m_pSprite = new sf::Sprite;
-	m_texture = *Resources::GetTexture(filename);
-	m_pSprite->setTexture(m_texture);
+	m_pTexture = Resources::GetTexture(p_filename);
+	m_pSprite->setTexture(*m_pTexture);
 
 	// The rectangle below is used as an "view" for viewing only part of the sprites texture. Parameters are x position, y position, width and height. The width is divided by m_numFrames, this is the number of pixels per frame.
-	sf::IntRect textureRect(0, 0, m_texture.getSize().x/m_numFrames, m_texture.getSize().y);
+	sf::IntRect textureRect(0, 0, m_pTexture->getSize().x/m_numFrames, m_pTexture->getSize().y);
 	m_pSprite->setTextureRect(textureRect);
 }
 
@@ -46,11 +46,6 @@ void Animation::update()
 
 		m_pSprite->setTextureRect(currentRect);
 	}
-}
-
-void Animation::setPosition(const sf::Vector2f& position)
-{
-	m_pSprite->setPosition(position);
 }
 
 sf::Sprite* Animation::getSprite() const

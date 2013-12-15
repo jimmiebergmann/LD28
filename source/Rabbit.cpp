@@ -13,7 +13,7 @@ Rabbit::Rabbit(const sf::Vector2f p_position) :
 	m_pCurrentAnimation(NULL)
 {
 	m_pCurrentAnimation = m_pIdleAnimation;
-	m_pCurrentAnimation->setPosition(p_position);
+	m_pCurrentAnimation->getSprite()->setPosition(p_position);
 
 }
 
@@ -40,13 +40,16 @@ void Rabbit::Update(Game * p_pGame, float p_deltaTime)
 		m_pCurrentAnimation = m_pIdleAnimation;
 	}
 	m_pCurrentAnimation->update();
-	m_pCurrentAnimation->setPosition(position);
+	m_pCurrentAnimation->getSprite()->setPosition(position);
 }
 
 void Rabbit::Collide(Game * p_pGame, const Entity * p_pOther)
 {
 	switch (p_pOther->GetType())
 	{
+	case Entity::eType::Type_Wolf:
+		//health--;
+		break;
 	default:
 		break;
 	}

@@ -196,12 +196,12 @@ void GameImp::Update( float p_DeltaTime )
 	{
 		for( unsigned int j = i + 1; j < m_entitys.size( ); j++ )
 		{
-			sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
-			sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
+			//sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
+			//sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
 
-			if( rect0.intersects( rect1 ) )
+			//if( rect0.intersects( rect1 ) )
 			{
-				m_entitys[ i ]->Collide( this, m_entitys[ j ] );
+				//m_entitys[ i ]->Collide( this, m_entitys[ j ] );
 			}
 		}
 	}

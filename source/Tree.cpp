@@ -7,6 +7,7 @@
 Tree::Tree(sf::Vector2f p_position) :
 	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/pine.png"))) 
 {
+	m_pSprite->setOrigin( 0.0f, 32.0f );
 	m_pSprite->setPosition( p_position );
 }
 
