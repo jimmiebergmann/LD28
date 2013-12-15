@@ -13,10 +13,11 @@ Wolf::Wolf(const sf::Vector2f p_position) :
 	m_pWalkLeft(new Animation("Data/Textures/wolf_left.png", 200, 2)),
 	m_pWalkRight(new Animation("Data/Textures/wolf_right.png", 200, 2)),
 	m_pCurrentAnimation(NULL),
-	m_health(1),
+	m_health(3),
 	m_alive(true)
 
 {
+	m_health = 3;
 	int a = rand() % 4;
 	Animation * ani[4] = {m_pWalkUp, m_pWalkDown, m_pWalkLeft, m_pWalkRight}; 
 	m_pCurrentAnimation = ani[a];
@@ -76,6 +77,9 @@ void Wolf::Collide(Game * p_pGame, Entity * p_pOther)
 			p_pOther->addDamage(1);
 			this->addDamage(1);
 		}
+		break;
+	case Type_Trap:
+		p_pOther->Collide(p_pGame, this);
 		break;
 	default:
 		break;
