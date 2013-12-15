@@ -14,6 +14,8 @@ Player::Player(sf::Vector2f position):
 	m_pCurrentAnimation(m_pIdle)
 {
 	m_eCurrentDirection = eDirection::Type_Down;
+	m_alive = true;
+	m_health = 100;
 }
 
 Player::~Player()
@@ -158,9 +160,9 @@ void Player::Attack(Game * p_pGame )
 
 
 int Player::getHealth() const {
-	return true;
+	return m_health;
 }
 
 bool Player::getAlive() const {
-	return true;
+	return m_alive;
 }

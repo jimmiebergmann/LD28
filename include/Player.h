@@ -28,6 +28,8 @@ public:
 
 private:
 
+	bool m_alive;
+	int m_health;
 	sf::Vector2f m_Postition;
 
 	enum eDirection
@@ -37,10 +39,9 @@ private:
 		Type_Right,
 		Type_Left
 	};
-
 	eDirection m_eCurrentDirection;
 
-	sf::RectangleShape* pWeaponCollision;
+	sf::FloatRect* pWeaponCollision;
 
 	Animation* m_pIdle;
 	Animation* m_pWalkUp;
