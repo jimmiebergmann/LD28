@@ -7,6 +7,7 @@
 
 sf::Vector2u Config::s_ScreenSize( 800, 600 );
 int Config::s_TileSize =  32;
+float Config::s_Zoom = 2.0f;
 
 
 // Public functions
@@ -23,6 +24,7 @@ bool Config::Load( const char * p_pFilename )
 	// Temporary varaibles
 	sf::Vector2u screenSize;
 	int tileSize = 0;
+	float zoom = 0;
 
 	// Read the screen size
 	if( fin.eof( ) )
@@ -38,12 +40,21 @@ bool Config::Load( const char * p_pFilename )
 	}
 	fin >> screenSize.y;
 
+	// Read the tile size
 	if( fin.eof( ) )
 	{
 		std::cout << "[Config::Load] Incomplete config file(2)." << std::endl;
 		return false;
 	}
 	fin >> tileSize;
+
+	// Read the zoom 
+	if( fin.eof( ) )
+	{
+		std::cout << "[Config::Load] Incomplete config file(3)." << std::endl;
+		return false;
+	}
+	fin >> zoom;
 
 	// Check for weird inputs
 	// ...
@@ -59,9 +70,16 @@ bool Config::Load( const char * p_pFilename )
 		return false;
 	}
 
+	if( zoom <= 0.0f )
+	{
+		std::cout << "[Config::Load] Too small zoom." << std::endl;
+		return false;
+	}
+
 	// Everything is okey now
 	s_ScreenSize = screenSize;
 	s_TileSize = tileSize;
+	s_Zoom = zoom;
 
 	return true;
 }
@@ -75,4 +93,9 @@ sf::Vector2u Config::GetScreenSize( )
 int Config::GetTileSize( )
 {
 	return s_TileSize;
+}
+
+float Config::GetZoom( )
+{
+	return s_Zoom;
 }

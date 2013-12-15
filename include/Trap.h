@@ -7,7 +7,7 @@
 
 class Trap : public Entity
 {
-
+	
 public:
 	
 	Trap(const sf::Vector2f p_position);
