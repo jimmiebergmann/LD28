@@ -6,6 +6,7 @@
 #include <Rabbit.h>
 #include <Tent.h>
 #include <Resources.h>
+#include <Player.h>
 
 #include <MemoryLeak.h>
 
@@ -101,12 +102,12 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
-
+	
 	for( unsigned int i = 0; i < s_mapSize.x; i++ )
 	{
 		for( unsigned int j = 0; j < s_mapSize.y; j++ )
 		{
-			if (std::rand() % 2)
+			if (std::rand() % 10 == 0)
 			{
 				m_entitys.push_back(new Tent(sf::Vector2f(i * 32.0f, j * 32.0f))); 
 			}
@@ -114,6 +115,10 @@ bool GameImp::Load()
 	}
 
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
+	m_entitys.push_back(new Player(sf::Vector2f(200, 200)));
+	//sf::View t(m_pRenderWindow->getView());
+	//t.setSize(t.getSize() * 0.5f);
+	//m_pRenderWindow->setView(t);
 	return true;
 }
 

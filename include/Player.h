@@ -21,6 +21,9 @@ public:
 	virtual Entity::eType GetType ( ) const;
 private:
 	sf::Vector2f m_Postition;
+
+
+
 	Animation* m_Idle;
 	Animation* m_WalkUp;
 	Animation* m_WalkDown;

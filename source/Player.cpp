@@ -1,7 +1,7 @@
 #include <Player.h>
 #include <MemoryLeak.h>
 
-static float PLAYERSPEED = 2;
+static float PLAYERSPEED = 0.6;
 
 Player::Player(sf::Vector2f position):
 	m_Postition(position),
@@ -17,28 +17,29 @@ Player::Player(sf::Vector2f position):
 
 void Player::Update(Game * p_pGame, float p_deltaTime)
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	m_CurrentAnimation = m_Idle;
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		m_Postition.y-=PLAYERSPEED;
 		m_CurrentAnimation = m_WalkUp;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		m_Postition.y+=PLAYERSPEED;
 		m_CurrentAnimation = m_WalkDown;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		m_Postition.x+=PLAYERSPEED;
 		m_CurrentAnimation = m_WalkRight;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		m_Postition.x-=PLAYERSPEED;
 		m_CurrentAnimation = m_WalkLeft;
 	}
-
-	m_CurrentAnimation->getSprite.setPosition(m_Postition);
+	m_CurrentAnimation->update();
+	m_CurrentAnimation->getSprite()->setPosition(m_Postition);
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
