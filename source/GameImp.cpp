@@ -162,7 +162,7 @@ bool GameImp::Load()
 			}
 		}
 	}
-	//m_entitys.push_back(new Turret(sf::Vector2f(60, 60)));
+	m_entitys.push_back(new Turret(sf::Vector2f(60, 60)));
 
 	sf::View t(m_pRenderWindow->getView());
 	t.setSize(t.getSize() * 0.5f);
@@ -242,26 +242,26 @@ void GameImp::Render( )
 
 	m_mapColor = sf::Color(127, 127, 127, 255);
 	float dayNight = g_dayCycle.getElapsedTime().asSeconds();
-	if (dayNight > 10.0f) {
+	while (dayNight > 10.0f) {
 		dayNight -= 10.0f;
 	}
 	float mornigTwilight = std::cos(g_dayCycle.getElapsedTime().asSeconds() * 0.5f);
-	if ((dayNight >= 0) && (mornigTwilight >= 0)) {
-		m_mapColor.r = + 128;
-		m_mapColor.g = + 128;
-		m_mapColor.b = + 128;
-	} else if ((dayNight >= 0) && (mornigTwilight <= 0)) {
-		m_mapColor.r = + 128;
-		m_mapColor.g = + 128;
-		m_mapColor.b = + 128;
-	} else if ((dayNight <= 0) && (mornigTwilight <= 0)) {
-		m_mapColor.r = + 128;
-		m_mapColor.g = + 128;
-		m_mapColor.b = + 128;
-	} else if ((dayNight <= 0) && (mornigTwilight >= 0)) {
-		m_mapColor.r = + 128;
-		m_mapColor.g = + 128;
-		m_mapColor.b = + 128;
+	if ((dayNight >= 0) && (dayNight <= 2)) {
+		m_mapColor.r += -64 + int(std::sin(dayNight / 2) * 192);
+		m_mapColor.g += -64 + int(std::sin(dayNight / 2) * 192);
+		m_mapColor.b += 128;
+	} else if ((dayNight >= 2) && (dayNight <= 5)) {
+		m_mapColor.r += 128;
+		m_mapColor.g += 128;
+		m_mapColor.b += 128;
+	} else if ((dayNight >= 5) && (dayNight <= 7)) {
+		m_mapColor.r += 128 - int(std::sin((dayNight - 5) / 2) * 192);
+		m_mapColor.g += 128 - int(std::sin((dayNight - 5) / 2) * 192);
+		m_mapColor.b += 128;
+	} else if ((dayNight >= 7) && (dayNight <= 10)) {
+		m_mapColor.r += -64;
+		m_mapColor.g += -64;
+		m_mapColor.b += 128;
 	}
 	
 	
@@ -269,9 +269,8 @@ void GameImp::Render( )
 	tex->setRepeated(true);
 	sf::Sprite backgrond(*tex, sf::IntRect(sf::Vector2i(), sf::Vector2i(s_mapSize * 32U)));
 	backgrond.setColor( m_mapColor );
+	m_pRenderWindow->clear( m_mapColor );
 	m_pRenderWindow->draw(backgrond);
-	//m_pRenderWindow->clear( s_clearColor );
-
 	// Render all the entities
 	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
 	{

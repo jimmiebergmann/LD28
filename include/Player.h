@@ -4,6 +4,7 @@
 #include <Entity.h>
 #include <Animation.h>
 #include <SFML/Window.hpp>
+#include <Game.h>
 
 class Player : public Entity
 {
@@ -17,6 +18,7 @@ public:
 	virtual void Update(Game * p_pGame, float p_deltaTime);
 	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
 	virtual void addDamage(int p_damage);
+	void Attack(Game * p_pGame);
 
 	// Get function
 	virtual int getHealth() const;
@@ -26,7 +28,20 @@ public:
 
 private:
 
+	bool m_alive;
+	int m_health;
 	sf::Vector2f m_Postition;
+
+	enum eDirection
+	{
+		Type_Up,
+		Type_Down,
+		Type_Right,
+		Type_Left
+	};
+	eDirection m_eCurrentDirection;
+
+	sf::FloatRect* pWeaponCollision;
 
 	Animation* m_pIdle;
 	Animation* m_pWalkUp;
