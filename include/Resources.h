@@ -11,16 +11,22 @@ class Resources
 {
 public:
 
+	//static functions
 	static bool Load();
-	static bool LoadSounds( const std::string &filename );
-	static bool LoadTextures( const std::string &filename );
+	static void Unload();
+
+	//static get functions
 	static sf::Sound * GetSound( const std::string & filename );
 	static sf::Texture * GetTexture( const std::string & filename );
-	static void UnloadSounds();
-	static void UnloadTextures();
-	static void UnloadResources();
-
+	
 private:
+
+	static bool LoadSounds( const std::string &filename );
+	static bool LoadTextures( const std::string &filename );
+
+	static void UnloadTextures();
+	static void UnloadSounds();
+	
 
 	struct SoundData
 	{

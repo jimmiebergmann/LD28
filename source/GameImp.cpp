@@ -205,7 +205,7 @@ void GameImp::Unload()
 	}
 	m_entitys.clear();
 
-	Resources::UnloadResources();
+	Resources::Unload();
 }
 
 void GameImp::Update( float p_DeltaTime )

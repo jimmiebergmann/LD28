@@ -31,13 +31,13 @@ Rabbit::~Rabbit()
 
 void Rabbit::Update(Game * p_pGame, float p_deltaTime)
 {
-	sf::Vector2f velocity(std::rand() % 10, std::rand() % 10);
+	sf::Vector2f velocity(10, 0);
 	sf::Vector2f position = m_pCurrentAnimation->getSprite()->getPosition();
 	position += velocity * 0.01f;
-	if (velocity.x * velocity.y > 2.5f) {
+	if (velocity.x > 2.5f) {
 		m_pCurrentAnimation = m_pMoveAnimation;
 	} else {
-		m_pCurrentAnimation = m_pIdleAnimation;
+		//m_pCurrentAnimation = m_pIdleAnimation;
 	}
 	m_pCurrentAnimation->update();
 	m_pCurrentAnimation->getSprite()->setPosition(position);
