@@ -18,8 +18,8 @@ public:
 
 	// Normal functions
 	virtual void Update(Game * p_pGame, float p_deltaTime);
-	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
-	virtual void addDamage(int p_damage);
+	virtual void Collide(Game * p_pGame, Entity * p_pOther);
+	virtual int addDamage(int p_damage);
 
 	// Get function
 	virtual int getHealth() const;

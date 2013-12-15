@@ -40,8 +40,14 @@ void TurretBullet::Update( Game * p_pGame, float p_deltaTime)
 	//Update
 }
 
-void TurretBullet::Collide( Game * p_pGame, const Entity * p_pOther )
+void TurretBullet::Collide( Game * p_pGame, Entity * p_pOther )
 {
+	if( p_pOther -> GetType() == Type_Bullet )
+	{
+		p_pOther->addDamage( 1 );
+	}
+
+
 	//Collide
 }
 
@@ -55,8 +61,8 @@ Entity::eType TurretBullet::GetType( ) const
 	return Type_Turret;
 }
 
-void TurretBullet::addDamage(int p_damage) {
-	;
+int TurretBullet::addDamage(int p_damage) {
+	return 0;
 }
 
 int TurretBullet::getHealth() const {

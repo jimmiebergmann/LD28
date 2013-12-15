@@ -91,7 +91,7 @@ void Player::Update(Game * p_pGame, float p_deltaTime)
 
 }
 
-void Player::Collide(Game * p_pGame, const Entity * p_pOther)
+void Player::Collide(Game * p_pGame, Entity * p_pOther)
 {
 	if(p_pOther->GetType() == Entity::eType::Type_Wolf )
 	{
@@ -112,8 +112,8 @@ Entity::eType Player::GetType( ) const
 	return Type_Player;
 }
 
-void Player::addDamage(int p_damage) {
-	;
+int Player::addDamage(int p_damage) {
+	return 0;
 }
 
 void Player::Attack(Game * p_pGame )

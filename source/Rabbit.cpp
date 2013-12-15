@@ -43,7 +43,7 @@ void Rabbit::Update(Game * p_pGame, float p_deltaTime)
 	m_pCurrentAnimation->getSprite()->setPosition(position);
 }
 
-void Rabbit::Collide(Game * p_pGame, const Entity * p_pOther)
+void Rabbit::Collide(Game * p_pGame, Entity * p_pOther)
 {
 	switch (p_pOther->GetType())
 	{
@@ -64,8 +64,8 @@ sf::Sprite * Rabbit:: GetSprite( ) const
 {
 	return m_pCurrentAnimation->getSprite();
 }
-void Rabbit::addDamage(int p_damage) {
-	;
+int Rabbit::addDamage(int p_damage) {
+	return 0;
 }
 
 int Rabbit::getHealth() const {

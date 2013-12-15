@@ -25,7 +25,7 @@ void Tent:: Update(Game * p_pGame, float p_deltaTime)
 
 }
 
-void Tent::Collide(Game * p_pGame, const Entity * p_pOther)
+void Tent::Collide(Game * p_pGame, Entity * p_pOther)
 {
 	switch (p_pOther->GetType())
 	{
@@ -43,8 +43,8 @@ sf::Sprite * Tent:: GetSprite( ) const
 {
 	return m_pSprite;
 }
-void Tent::addDamage(int p_damage) {
-	;
+int Tent::addDamage(int p_damage) {
+	return 0;
 }
 
 int Tent::getHealth() const {

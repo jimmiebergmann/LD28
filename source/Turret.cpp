@@ -39,7 +39,7 @@ void Turret::Update( Game * p_pGame, float p_deltaTime)
 	m_turretTimer++;
 }
 
-void Turret::Collide( Game * p_pGame, const Entity * p_pOther )
+void Turret::Collide( Game * p_pGame, Entity * p_pOther )
 {
 	//Collide
 }
@@ -93,8 +93,8 @@ Entity::eType Turret::GetType( ) const
 	return Type_Turret;
 }
 
-void Turret::addDamage(int p_damage) {
-	;
+int Turret::addDamage(int p_damage) {
+	return 0;
 }
 
 int Turret::getHealth() const {

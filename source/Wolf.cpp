@@ -63,7 +63,7 @@ void Wolf::Update(Game * p_pGame, float p_deltaTime)
 	m_pCurrentAnimation->update();
 }
 
-void Wolf::Collide(Game * p_pGame, const Entity * p_pOther)
+void Wolf::Collide(Game * p_pGame, Entity * p_pOther)
 {
 	switch (p_pOther->GetType())
 	{
@@ -82,8 +82,8 @@ sf::Sprite * Wolf:: GetSprite( ) const
 	return m_pCurrentAnimation->getSprite();
 }
 
-void Wolf::addDamage(int p_damage) {
-	;
+int Wolf::addDamage(int p_damage) {
+	return 0;
 }
 
 int Wolf::getHealth() const {

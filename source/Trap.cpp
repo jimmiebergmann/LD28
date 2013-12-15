@@ -20,7 +20,7 @@ void Trap:: Update(Game * p_pGame, float p_deltaTime)
 
 }
 
-void Trap::Collide(Game * p_pGame, const Entity * p_pOther)
+void Trap::Collide(Game * p_pGame, Entity * p_pOther)
 {
 	if( p_pOther->GetType() ==  Type_Player /*&&  p_pOther->GetDayTime() == DAY */ )
 	{
@@ -32,7 +32,6 @@ void Trap::Collide(Game * p_pGame, const Entity * p_pOther)
 		m_ActiveTrap = false;
 		
 	}
-
 
 
 	switch (p_pOther->GetType())
@@ -51,8 +50,8 @@ sf::Sprite * Trap:: GetSprite( ) const
 {
 	return m_pSprite;
 }
-void Trap::addDamage(int p_damage) {
-	;
+int Trap::addDamage(int p_damage) {
+	return 0;
 }
 
 int Trap::getHealth() const {

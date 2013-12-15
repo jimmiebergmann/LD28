@@ -23,7 +23,7 @@ void Fence::Update( Game * p_pGame, float p_deltaTime)
 	//Update
 }
 
-void Fence::Collide( Game * p_pGame, const Entity * p_pOther )
+void Fence::Collide( Game * p_pGame, Entity * p_pOther )
 {
 	//Collide
 }
@@ -38,8 +38,9 @@ Entity::eType Fence::GetType( ) const
 	return Type_Fence;
 }
 
-void Fence::addDamage(int p_damage) {
-	;
+int Fence::addDamage(int p_damage) 
+{
+	return 1;
 }
 
 int Fence::getHealth() const {
