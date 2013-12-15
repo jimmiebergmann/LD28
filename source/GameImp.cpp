@@ -6,14 +6,11 @@
 #include <Rabbit.h>
 #include <Tent.h>
 #include <Resources.h>
-<<<<<<< HEAD
 #include <Player.h>
-=======
 #include <Stone.h>
 #include <Tree.h>
 #include <Fence.h>
 #include <Trap.h>
->>>>>>> 07e73c67f75277b35ebce8ef38571477a5883c22
 
 #include <MemoryLeak.h>
 
@@ -199,12 +196,12 @@ void GameImp::Update( float p_DeltaTime )
 	{
 		for( unsigned int j = i + 1; j < m_entitys.size( ); j++ )
 		{
-			sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
-			sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
+			//sf::FloatRect rect0 = m_entitys[ i ]->GetSprite( )->getGlobalBounds( );
+			//sf::FloatRect rect1 = m_entitys[ j ]->GetSprite( )->getGlobalBounds( );
 
-			if( rect0.intersects( rect1 ) )
+			//if( rect0.intersects( rect1 ) )
 			{
-				m_entitys[ i ]->Collide( this, m_entitys[ j ] );
+				//m_entitys[ i ]->Collide( this, m_entitys[ j ] );
 			}
 		}
 	}

@@ -10,20 +10,20 @@
 class Animation
 {
 public:
-	Animation(const std::string& filename, int timePerFrame, int numFrames);
+	Animation(const std::string& p_filename, int p_timePerFrame, int p_numFrames);
 	~Animation();
 
 	void update();
-	void setPosition(const sf::Vector2f& position);
 	sf::Sprite* getSprite() const;
 
 private:
+
 	sf::Clock m_frameTimer;
-	
-	sf::Texture m_texture;
+	sf::Texture * m_pTexture;
 	sf::Sprite * m_pSprite;
 	int m_timePerFrame;
 	int m_numFrames;
 	int m_currentFrame;
+
 };
 #endif
