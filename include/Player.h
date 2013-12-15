@@ -41,7 +41,7 @@ private:
 	};
 	eDirection m_eCurrentDirection;
 
-	sf::FloatRect* pWeaponCollision;
+	sf::FloatRect m_pWeaponCollision;
 
 	Animation* m_pIdle;
 	Animation* m_pWalkUp;

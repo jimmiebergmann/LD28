@@ -5,6 +5,9 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+// Forward declaration
+class Player;
+
 class GameImp : public Game
 {
 
@@ -41,12 +44,17 @@ private:
 	// Private static
 	static const sf::Vector2u s_mapSize;
 	static const sf::Color s_clearColor;
+	static const sf::Vector2f s_wolfSpawnPoints[ 3 ];
 
 	// private variables
 	sf::RenderWindow * m_pRenderWindow;
 	EntityVector m_entitys;
+	Player * m_pPlayer;
 	bool ** m_ppCollisionData;
 	sf::Color m_mapColor;
+	bool m_spawningWolfs;
+	sf::Clock m_wolfSpawnTimer;
+
 };
 
 

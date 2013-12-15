@@ -19,15 +19,22 @@
 // Private static
 const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 16, 16 );
 const sf::Color GameImp::s_clearColor( 56, 215, 79, 255 );
+const sf::Vector2f GameImp::s_wolfSpawnPoints[ 3 ] =
+{
+	sf::Vector2f( 2 * Config::GetTileSize( ), 2  * Config::GetTileSize( )),
+	sf::Vector2f( 2 * Config::GetTileSize( ), ( s_mapSize.y / 2 ) * Config::GetTileSize( ) ),
+	sf::Vector2f( 2 * Config::GetTileSize( ), ( s_mapSize.y - 3 ) * Config::GetTileSize( ) )
+};
 
 static float g_fps = 0;
-static Player * g_pPlayer = 0;
 sf::Clock g_dayCycle;
 
 GameImp::GameImp( ) :
 	m_pRenderWindow( NULL ),
+	m_pPlayer( NULL ),
 	m_ppCollisionData( NULL ),
-	m_mapColor( 255, 255, 255, 255 )
+	m_mapColor( 255, 255, 255, 255 ),
+	m_spawningWolfs( false )
 {
 }
 
@@ -122,14 +129,14 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
-	g_pPlayer = new Player(sf::Vector2f(200, 200));
+	m_pPlayer = new Player(sf::Vector2f(200, 200));
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
-	m_entitys.push_back(g_pPlayer);
+	m_entitys.push_back(m_pPlayer);
 	//m_entitys.push_back(new Wolf(sf::Vector2f(700, 700)));
 
 	m_entitys.push_back(new Tent(sf::Vector2f(6 * 32.0f, 6 * 32.0f))); 
 
-	for( unsigned int i = 0; i < s_mapSize.x; i++ )
+	/*for( unsigned int i = 0; i < s_mapSize.x; i++ )
 	{
 		for( unsigned int j = 0; j < s_mapSize.y; j++ )
 		{
@@ -161,7 +168,7 @@ bool GameImp::Load()
 				
 			}
 		}
-	}
+	}*/
 	m_entitys.push_back(new Turret(sf::Vector2f(60, 60)));
 
 	sf::View t(m_pRenderWindow->getView());
@@ -199,6 +206,29 @@ void GameImp::Unload()
 
 void GameImp::Update( float p_DeltaTime )
 {
+	// Reset the wolf spawn timer
+	if( sf::Keyboard::isKeyPressed( sf::Keyboard::O ) )
+	{
+		m_spawningWolfs = true;
+		m_wolfSpawnTimer.restart( );
+	}
+
+	// Spawn wolfs
+	if( m_spawningWolfs )
+	{
+		if( m_wolfSpawnTimer.getElapsedTime( ).asSeconds( ) >= 1.0f )
+		{
+			for( int i = 0; i < 3; i++ )
+			{
+				m_entitys.push_back( new Wolf( s_wolfSpawnPoints[ i ] ) ); 
+			}
+
+
+			m_wolfSpawnTimer.restart( );
+		}
+	}
+
+
 	// Update all the entities
 	for( unsigned int i = 0; i < m_entitys.size( ); i++ )
 	{
@@ -238,7 +268,7 @@ void GameImp::HandleEvent( sf::Event p_event)
 
 void GameImp::Render( )
 {
-	m_pRenderWindow->setView(sf::View(g_pPlayer->GetSprite()->getPosition(), m_pRenderWindow->getView().getSize()));
+	m_pRenderWindow->setView(sf::View(m_pPlayer->GetSprite()->getPosition(), m_pRenderWindow->getView().getSize()));
 
 	m_mapColor = sf::Color(127, 127, 127, 255);
 	float dayNight = g_dayCycle.getElapsedTime().asSeconds();
