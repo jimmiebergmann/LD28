@@ -185,6 +185,9 @@ bool GameImp::Load()
 void GameImp::addEntity( Entity * p_pEntity )
 {
 	m_entitys.push_back(p_pEntity);
+		int x = p_pEntity->GetSprite()->getPosition().x/32;
+		int y = p_pEntity->GetSprite()->getPosition().y/32;
+	m_ppCollisionData[x][y] = true;
 }
 
 void GameImp::Unload()

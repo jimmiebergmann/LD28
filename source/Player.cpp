@@ -142,8 +142,8 @@ void Player::Attack(Game * p_pGame )
 
 	}
 	
-	Game::EntityVector& vec1 = p_pGame->GetEntities();
-	for(Game::EntityVector::iterator i = vec1.begin(); i != vec1.end(); i++)
+	const Game::EntityVector& vec1 = p_pGame->GetEntities();
+	for(Game::EntityVector::const_iterator i = vec1.begin(); i != vec1.end(); i++)
 	{
 		if((*i)->GetType() == Entity::eType::Type_Wolf)
 		{
@@ -166,25 +166,24 @@ void Player::AddObject(Game * p_pGame)
 	// add a stone
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))
 	{
-		Game::EntityVector& vec1 = p_pGame->GetEntities();
 
 		int x = m_Postition.x/32;
-			x *= 32;
 		int y = m_Postition.y/32;
-			y *= 32;
-		vec1.push_back( new Stone(sf::Vector2f(x,y)));
+		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
+		{
+			p_pGame->addEntity( new Stone(sf::Vector2f(x*32,y*32)));
+		}
 	}
 
 	//add a turret
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))
 	{
-		Game::EntityVector& vec1 = p_pGame->GetEntities();
-
 		int x = m_Postition.x/32;
-			x *= 32;
 		int y = m_Postition.y/32;
-			y *= 32;
-		vec1.push_back( new Turret(sf::Vector2f(x,y)));
+		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
+		{
+		p_pGame->addEntity( new Turret(sf::Vector2f(x*32,y*32)));
+		}
 	}
 
 }
