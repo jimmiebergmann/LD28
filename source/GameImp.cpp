@@ -12,14 +12,16 @@
 #include <Fence.h>
 #include <Trap.h>
 #include <Wolf.h>
+#include <Turret.h>
 
 #include <MemoryLeak.h>
 
 // Private static
-const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 35, 25 );
+const sf::Vector2u GameImp::s_mapSize = sf::Vector2u( 16, 16 );
 const sf::Color GameImp::s_clearColor( 56, 215, 79, 255 );
 
 static float g_fps = 0;
+static Player * g_pPlayer = 0;
 sf::Clock g_dayCycle;
 
 GameImp::GameImp( ) :
@@ -120,10 +122,12 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
-	
+	g_pPlayer = new Player(sf::Vector2f(200, 200));
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
-	m_entitys.push_back(new Player(sf::Vector2f(200, 200)));
+	m_entitys.push_back(g_pPlayer);
 	//m_entitys.push_back(new Wolf(sf::Vector2f(700, 700)));
+
+	m_entitys.push_back(new Tent(sf::Vector2f(6 * 32.0f, 6 * 32.0f))); 
 
 	for( unsigned int i = 0; i < s_mapSize.x; i++ )
 	{
@@ -133,7 +137,8 @@ bool GameImp::Load()
 			int val = std::rand() % 10;
 			if (val == 9)
 			{
-				m_entitys.push_back(new Tent(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+				m_entitys.push_back(new Wolf(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+				
 			}
 			else if (val == 8)
 			{
@@ -153,15 +158,15 @@ bool GameImp::Load()
 			}
 			else if (val == 4)
 			{
-				m_entitys.push_back(new Wolf(sf::Vector2f(i * 32.0f, j * 32.0f))); 
+				
 			}
 		}
 	}
+	//m_entitys.push_back(new Turret(sf::Vector2f(60, 60)));
 
-
-	//sf::View t(m_pRenderWindow->getView());
-	//t.setSize(t.getSize() * 0.5f);
-	//m_pRenderWindow->setView(t);
+	sf::View t(m_pRenderWindow->getView());
+	t.setSize(t.getSize() * 0.5f);
+	m_pRenderWindow->setView(t);
 	return true;
 }
 
@@ -233,12 +238,36 @@ void GameImp::HandleEvent( sf::Event p_event)
 
 void GameImp::Render( )
 {
-	float dayNight = std::sin(g_dayCycle.getElapsedTime().asSeconds() * 0.5f);
+	m_pRenderWindow->setView(sf::View(g_pPlayer->GetSprite()->getPosition(), m_pRenderWindow->getView().getSize()));
+
+	m_mapColor = sf::Color(127, 127, 127, 255);
+	float dayNight = g_dayCycle.getElapsedTime().asSeconds();
+	if (dayNight > 10.0f) {
+		dayNight -= 10.0f;
+	}
 	float mornigTwilight = std::cos(g_dayCycle.getElapsedTime().asSeconds() * 0.5f);
-	m_mapColor = sf::Color(158 + int(dayNight * 68), 158 + int(dayNight * 68), 128 + int(mornigTwilight * 128), 255);
+	if ((dayNight >= 0) && (mornigTwilight >= 0)) {
+		m_mapColor.r = + 128;
+		m_mapColor.g = + 128;
+		m_mapColor.b = + 128;
+	} else if ((dayNight >= 0) && (mornigTwilight <= 0)) {
+		m_mapColor.r = + 128;
+		m_mapColor.g = + 128;
+		m_mapColor.b = + 128;
+	} else if ((dayNight <= 0) && (mornigTwilight <= 0)) {
+		m_mapColor.r = + 128;
+		m_mapColor.g = + 128;
+		m_mapColor.b = + 128;
+	} else if ((dayNight <= 0) && (mornigTwilight >= 0)) {
+		m_mapColor.r = + 128;
+		m_mapColor.g = + 128;
+		m_mapColor.b = + 128;
+	}
+	
+	
 	sf::Texture * tex = Resources::GetTexture("Data/Textures/Grass.png");
 	tex->setRepeated(true);
-	sf::Sprite backgrond(*tex, sf::IntRect(sf::Vector2i(), sf::Vector2i(m_pRenderWindow->getView().getSize())));
+	sf::Sprite backgrond(*tex, sf::IntRect(sf::Vector2i(), sf::Vector2i(s_mapSize * 32U)));
 	backgrond.setColor( m_mapColor );
 	m_pRenderWindow->draw(backgrond);
 	//m_pRenderWindow->clear( s_clearColor );
