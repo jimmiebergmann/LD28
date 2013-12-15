@@ -33,6 +33,9 @@ private:
 	Animation* m_pWalkLeft;
 	Animation* m_pWalkRight;
 	Animation* m_pCurrentAnimation;
+
+	int m_health;
+
 };
 
 

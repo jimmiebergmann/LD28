@@ -12,7 +12,8 @@ Wolf::Wolf(const sf::Vector2f p_position) :
 	m_pWalkDown(new Animation("Data/Textures/wolf_down.png", 200, 2)),
 	m_pWalkLeft(new Animation("Data/Textures/wolf_left.png", 200, 2)),
 	m_pWalkRight(new Animation("Data/Textures/wolf_right.png", 200, 2)),
-	m_pCurrentAnimation(NULL)
+	m_pCurrentAnimation(NULL),
+	m_health(3)
 {
 	int a = rand() % 4;
 	Animation * ani[4] = {m_pWalkUp, m_pWalkDown, m_pWalkLeft, m_pWalkRight}; 
@@ -67,6 +68,14 @@ void Wolf::Collide(Game * p_pGame, Entity * p_pOther)
 {
 	switch (p_pOther->GetType())
 	{
+	case Type_Bullet:
+	if( p_pOther->getAlive() == true)
+		{
+			p_pOther->addDamage( 100 );
+			this->addDamage(1);
+		}
+		break;
+
 	default:
 		break;
 	}
@@ -82,8 +91,16 @@ sf::Sprite * Wolf:: GetSprite( ) const
 	return m_pCurrentAnimation->getSprite();
 }
 
-int Wolf::addDamage(int p_damage) {
-	return 0;
+int Wolf::addDamage(int p_damage)
+{
+	m_health -= p_damage;
+
+	if(m_health <= 0)
+	{
+		m_health = false;
+	}
+
+	return m_health;
 }
 
 int Wolf::getHealth() const {

@@ -43,14 +43,17 @@ sf::Sprite * Tent:: GetSprite( ) const
 {
 	return m_pSprite;
 }
-int Tent::addDamage(int p_damage) {
+int Tent::addDamage(int p_damage) 
+{
 	return 0;
 }
 
-int Tent::getHealth() const {
+int Tent::getHealth() const 
+{
 	return true;
 }
 
-bool Tent::getAlive() const {
+bool Tent::getAlive() const 
+{
 	return true;
 }

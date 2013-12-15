@@ -28,6 +28,8 @@ private:
 
 	Entity * m_pEnemyTarget;
 	sf::Sprite * m_pSprite;
+	bool m_alive;
+	int m_health;
 
 };
 
