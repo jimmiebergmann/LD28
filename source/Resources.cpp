@@ -37,26 +37,9 @@ sf::Sound * Resources::GetSound( const std::string &filename )
 
 sf::Texture * Resources::GetTexture( const std::string &filename )
 {
-	TextureMap::iterator it = s_Textures.find( filename );
+	TextureMap::iterator & it = s_Textures.find( filename );
 
-	if( it != s_Textures.end( ) )
-	{
-		return it->second;
-	}
-
-	sf::Texture * texture = new sf::Texture;
-	if( texture->loadFromFile( filename ) == false )
-	
-	{
-		std::cout << "Failed to load sound file." << std::endl;
-		delete texture;
-		texture = NULL;
-		return texture;
-	} 
-	
-	s_Textures[filename] = texture;
-	return texture;
-	
+	return it->second;
 }
 
 void Resources::UnloadSounds()
@@ -80,7 +63,7 @@ void Resources::UnloadTextures()
 	s_Textures.clear( );
 }
 
-void Resources::UnloadResources()
+void Resources::Unload()
 {
 	UnloadSounds();
 	UnloadTextures();
@@ -106,7 +89,8 @@ bool Resources::LoadTextures( const std::string &filename )
 		std::cout << "Failed to load sound file." << std::endl;
 		delete texture;
 		return false;
-	} 
+	}
+	std::cout << "ok: " << filename << std::endl;
 	s_Textures[filename] = texture;
 	return true;
 }
@@ -116,9 +100,26 @@ bool Resources::Load()
 	bool succ = true;
 	succ = LoadTextures("Data/Textures/RabbitMovingTest.png");
 	succ = LoadTextures("Data/Textures/RabbitTest.png");
+	succ = LoadTextures("Data/Textures/idle.png");
+	succ = LoadTextures("Data/Textures/walk_up.png");
+	succ = LoadTextures("Data/Textures/walk_down.png");
+	succ = LoadTextures("Data/Textures/walk_left.png");
+	succ = LoadTextures("Data/Textures/walk_right.png");
+	succ = LoadTextures("Data/Textures/Tent.png");
+	succ = LoadTextures("Data/Textures/Stone.png");	
+	succ = LoadTextures("Data/Textures/Trap.png");	
+	succ = LoadTextures("Data/Textures/pine.png");
+	succ = LoadTextures("Data/Textures/Turret.png");	
+	succ = LoadTextures("Data/Textures/TurretBullet.png");
+	succ = LoadTextures("Data/Textures/wolf_up.png");
+	succ = LoadTextures("Data/Textures/wolf_down.png");
+	succ = LoadTextures("Data/Textures/wolf_left.png");
+	succ = LoadTextures("Data/Textures/wolf_right.png");
+	succ = LoadTextures("Data/Textures/Grass.png");
+	succ = LoadTextures("Data/Textures/Fence.png");
 	
 	if (!succ) {
-		Resources::UnloadResources();
+		Resources::Unload();
 	}
 	return succ;
 }
