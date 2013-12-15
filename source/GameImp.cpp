@@ -242,27 +242,26 @@ void GameImp::Render( )
 
 	m_mapColor = sf::Color(127, 127, 127, 255);
 	float dayNight = g_dayCycle.getElapsedTime().asSeconds();
-	if (dayNight > 10.0f) {
+	while (dayNight > 10.0f) {
 		dayNight -= 10.0f;
-		g_dayCycle.restart();
 	}
 	float mornigTwilight = std::cos(g_dayCycle.getElapsedTime().asSeconds() * 0.5f);
 	if ((dayNight >= 0) && (dayNight <= 2)) {
-		m_mapColor.r += 8;
-		m_mapColor.g += 8;
-		m_mapColor.b += 8;
+		m_mapColor.r += -64 + int(std::sin(dayNight / 2) * 192);
+		m_mapColor.g += -64 + int(std::sin(dayNight / 2) * 192);
+		m_mapColor.b += 128;
 	} else if ((dayNight >= 2) && (dayNight <= 5)) {
 		m_mapColor.r += 128;
 		m_mapColor.g += 128;
 		m_mapColor.b += 128;
 	} else if ((dayNight >= 5) && (dayNight <= 7)) {
-		m_mapColor.r += 128;
-		m_mapColor.g += 128;
-		m_mapColor.b -= 128;
+		m_mapColor.r += 128 - int(std::sin((dayNight - 5) / 2) * 192);
+		m_mapColor.g += 128 - int(std::sin((dayNight - 5) / 2) * 192);
+		m_mapColor.b += 128;
 	} else if ((dayNight >= 7) && (dayNight <= 10)) {
-		m_mapColor.r -= 68;
-		m_mapColor.g -= 68;
-		m_mapColor.b += 8;
+		m_mapColor.r += -64;
+		m_mapColor.g += -64;
+		m_mapColor.b += 128;
 	}
 	
 	

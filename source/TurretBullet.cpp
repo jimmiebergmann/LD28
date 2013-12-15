@@ -25,12 +25,16 @@ void TurretBullet::Update( Game * p_pGame, float p_deltaTime)
 {
 
 	sf::Vector2f diraction = m_pEnemyTarget->GetSprite()->getPosition() - m_pSprite->getPosition();
-	
-	m_pSprite->rotate(0.1);
+	float len = std::sqrt(diraction.x * diraction.x + diraction.y * diraction.y);
+	if (len < 32.0f) {
+		//alive = false;
+	}
+	diraction *= 1.0f / len;
 
-	diraction.x = diraction.x/200;
-	diraction.y = diraction.y/200;
-	
+	m_pSprite->setOrigin(5.0f, 5.0f);
+	m_pSprite->rotate(10.1);
+	//m_pSprite->setOrigin(0.0f, 0.0f);
+
 	m_pSprite->move(diraction);
 
 	//Update
