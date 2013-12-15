@@ -142,39 +142,18 @@ bool GameImp::Load()
 
 	m_entitys.push_back(new Tent(sf::Vector2f(32.0f,32.0f))); 
 
-	/*for( unsigned int i = 0; i < s_mapSize.x; i++ )
+	for( unsigned int i = 0; i < s_mapSize.x; i++ )
 	{
 		for( unsigned int j = 0; j < s_mapSize.y; j++ )
 		{
 
 			int val = std::rand() % 10;
-			if (val == 9)
+			if ((val == 9) && (m_ppCollisionData[i][j] == false))
 			{
-				m_entitys.push_back(new Wolf(sf::Vector2f(i * 32.0f, j * 32.0f))); 
-				
-			}
-			else if (val == 8)
-			{
-				m_entitys.push_back(new Stone(sf::Vector2f(i * 32.0f, j * 32.0f))); 
-			}
-			else if (val == 7)
-			{
-				m_entitys.push_back(new Tree(sf::Vector2f(i * 32.0f, j * 32.0f))); 
-			}
-			else if (val == 6)
-			{
-				m_entitys.push_back(new Fence(sf::Vector2f(i * 32.0f, j * 32.0f))); 
-			}
-			else if (val == 5)
-			{
-				m_entitys.push_back(new Trap(sf::Vector2f(i * 32.0f, j * 32.0f))); 
-			}
-			else if (val == 4)
-			{
-				
+				addEntity(new Tree(sf::Vector2f(i * 32.0f, j * 32.0f))); 
 			}
 		}
-	}*/
+	}
 	m_entitys.push_back(new Turret(sf::Vector2f(60, 60)));
 
 	sf::View t(m_pRenderWindow->getView());
