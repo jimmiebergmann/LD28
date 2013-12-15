@@ -180,6 +180,11 @@ bool GameImp::Load()
 	return true;
 }
 
+void GameImp::addEntity( Entity * p_pEntity )
+{
+	m_entitys.push_back(p_pEntity);
+}
+
 void GameImp::Unload()
 {
 	if( m_pRenderWindow )
