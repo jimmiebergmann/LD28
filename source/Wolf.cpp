@@ -74,7 +74,7 @@ void Wolf::Collide(Game * p_pGame, const Entity * p_pOther)
 
 Entity::eType Wolf::GetType() const 
 {
-	return Entity::eType::Type_Rabit;
+	return Entity::eType::Type_Wolf;
 }
 
 sf::Sprite * Wolf:: GetSprite( ) const
