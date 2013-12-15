@@ -28,7 +28,6 @@ public:
 
 private:
 
-	Animation* m_pIdle;
 	Animation* m_pWalkUp;
 	Animation* m_pWalkDown;
 	Animation* m_pWalkLeft;
