@@ -110,6 +110,9 @@ int GameImp::Error( const sf::String & p_errorDesc)
 
 bool GameImp::Load()
 {
+	if (!Resources::Load()) {
+		return false;
+	}
 	// Load the config file
 	Config::Load( "Data/Configs.txt" );
 
