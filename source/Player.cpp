@@ -97,9 +97,17 @@ void Player::Update(Game * p_pGame, float p_deltaTime)
 
 void Player::Collide(Game * p_pGame, Entity * p_pOther)
 {
-	if(p_pOther->GetType() == Entity::eType::Type_Wolf )
+	switch (p_pOther->GetType())
 	{
-		//take damage
+	case Type_Trap:
+		if( true /*p_pOther->GetDayTime() == DAY */ )
+		{
+			p_pOther->addDamage( 1 );	// 1 == Set trap to active
+		}
+		break;
+
+	default:
+		break;
 	}
 
 }

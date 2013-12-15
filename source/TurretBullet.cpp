@@ -51,13 +51,6 @@ void TurretBullet::Collide( Game * p_pGame, Entity * p_pOther )
 			this->addDamage(1);
 		}
 		break;
-	case Type_Trap:
-		if(( p_pOther->getAlive() == true) && (m_alive == true))
-		{
-			p_pOther->addDamage(0);
-			this->addDamage(100);
-		}
-		break;
 	default:
 		break;
 	}

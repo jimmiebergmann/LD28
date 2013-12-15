@@ -237,7 +237,6 @@ void GameImp::Update( float p_DeltaTime )
 				m_entitys.push_back( new Wolf( s_wolfSpawnPoints[ i ] ) ); 
 			}
 
-			m_spawningWolfs = false;
 			m_wolfSpawnTimer.restart( );
 		}
 	}

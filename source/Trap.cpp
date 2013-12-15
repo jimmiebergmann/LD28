@@ -5,7 +5,9 @@
 #include <MemoryLeak.h>
 
 Trap::Trap(const sf::Vector2f p_position) :
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Trap.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Trap.png"))),
+	m_alive(true),
+	m_activeTrap(true)
 {
 	m_pSprite->setPosition(p_position);
 }
@@ -34,18 +36,19 @@ void Trap::Collide(Game * p_pGame, Entity * p_pOther)
 	switch (p_pOther->GetType())
 	{
 	case Type_Wolf:
-		if( p_pOther->getAlive() == true && m_activeTrap == true)
+		if( p_pOther->getAlive() == true && m_activeTrap == true && m_alive == true)
 		{
 			p_pOther->addDamage( 100 );
 			this->addDamage( 0 );	// 0 == Set trap to active
 		}
+		break;
+
 	case Type_Player:
 		if( true /*p_pOther->GetDayTime() == DAY */ )
 		{
 			this->addDamage( 1 );	// 1 == Set trap to active
 		}
-
-	break;
+		break;
 
 	default:
 		break;
