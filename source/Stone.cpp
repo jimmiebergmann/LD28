@@ -37,3 +37,14 @@ Entity::eType Stone::GetType( ) const
 {
 	return Type_Stone;
 }
+void Stone::addDamage(int p_damage) {
+	;
+}
+
+int Stone::getHealth() const {
+	return true;
+}
+
+bool Stone::getAlive() const {
+	return true;
+}

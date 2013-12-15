@@ -38,3 +38,14 @@ sf::Sprite * Trap:: GetSprite( ) const
 {
 	return m_pSprite;
 }
+void Trap::addDamage(int p_damage) {
+	;
+}
+
+int Trap::getHealth() const {
+	return true;
+}
+
+bool Trap::getAlive() const {
+	return true;
+}

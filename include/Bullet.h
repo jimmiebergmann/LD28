@@ -11,11 +11,16 @@ public:
 
 	virtual ~Bullet(){}
 
-	virtual void Update( Game * p_pGame, float p_deltaTime ) = 0;
-	virtual void Collide( Game * p_pGame, const Entity * p_pOther ) = 0;
+	/*// Normal functions
+	virtual void Update(Game * p_pGame, float p_deltaTime);
+	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
+	virtual void addDamage(int p_damage);
 
-	virtual sf::Sprite * GetSprite( ) const = 0;
-	virtual eType GetType( ) const = 0;
+	// Get function
+	virtual int getHealth() const;
+	virtual bool getAlive() const;
+	virtual sf::Sprite * GetSprite( ) const;
+	virtual eType GetType( ) const;*/
 
 private:
 		

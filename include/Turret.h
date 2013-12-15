@@ -13,11 +13,21 @@ public:
 	Turret(sf::Vector2f p_position);
 	virtual ~Turret();
 
-	virtual void Update( Game * p_pGame, float p_deltaTime );
-	virtual void Collide( Game * p_pGame, const Entity * p_pOther );
+	void Attack( Game * p_pGame );
 
+	// Normal functions
+	virtual void Update(Game * p_pGame, float p_deltaTime);
+	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
+	virtual void addDamage(int p_damage);
+
+	// Get function
+	virtual int getHealth() const;
+	virtual bool getAlive() const;
 	virtual sf::Sprite * GetSprite( ) const;
 	virtual eType GetType( ) const;
+
+
+
 
 private:
 

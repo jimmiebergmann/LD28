@@ -39,3 +39,15 @@ Entity::eType Tree::GetType( ) const
 {
 	return Type_Tree;
 }
+
+void Tree::addDamage(int p_damage) {
+	;
+}
+
+int Tree::getHealth() const {
+	return true;
+}
+
+bool Tree::getAlive() const {
+	return true;
+}

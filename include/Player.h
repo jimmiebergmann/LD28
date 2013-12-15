@@ -12,14 +12,17 @@ public:
 	Player(sf::Vector2f position);
 	virtual ~Player();
 
-	//Normal functions
+
+	// Normal functions
 	virtual void Update(Game * p_pGame, float p_deltaTime);
 	virtual void Collide(Game * p_pGame, const Entity * p_pOther);
-	void Attack();
-	
-	// Get Functions
+	virtual void addDamage(int p_damage);
+
+	// Get function
+	virtual int getHealth() const;
+	virtual bool getAlive() const;
 	virtual sf::Sprite * GetSprite( ) const;
-	virtual Entity::eType GetType ( ) const;
+	virtual eType GetType( ) const;
 
 private:
 

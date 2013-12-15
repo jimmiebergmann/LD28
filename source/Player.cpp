@@ -96,3 +96,15 @@ Entity::eType Player::GetType( ) const
 {
 	return Type_Player;
 }
+
+void Player::addDamage(int p_damage) {
+	;
+}
+
+int Player::getHealth() const {
+	return true;
+}
+
+bool Player::getAlive() const {
+	return true;
+}
