@@ -14,7 +14,9 @@ Wolf::Wolf(const sf::Vector2f p_position) :
 	m_pWalkRight(new Animation("Data/Textures/wolf_right.png", 200, 2)),
 	m_pCurrentAnimation(NULL)
 {
-	m_pCurrentAnimation = m_pWalkUp;
+	int a = rand() % 4;
+	Animation * ani[4] = {m_pWalkUp, m_pWalkDown, m_pWalkLeft, m_pWalkRight}; 
+	m_pCurrentAnimation = ani[a];
 	m_pCurrentAnimation->getSprite()->setPosition(p_position);
 }
 
@@ -36,6 +38,28 @@ Wolf::~Wolf()
 
 void Wolf::Update(Game * p_pGame, float p_deltaTime)
 {
+	sf::Vector2f pos = m_pCurrentAnimation->getSprite()->getPosition();
+	if (m_pCurrentAnimation == m_pWalkUp)
+	{
+		m_pCurrentAnimation = m_pWalkUp;
+		pos += sf::Vector2f(0, -0.1f);
+	}
+	else if (m_pCurrentAnimation == m_pWalkDown)
+	{
+		m_pCurrentAnimation = m_pWalkDown;
+		pos += sf::Vector2f(0, 0.1f);
+	}
+	else if (m_pCurrentAnimation == m_pWalkLeft)
+	{
+		m_pCurrentAnimation = m_pWalkLeft;
+		pos += sf::Vector2f(-0.1f, 0);
+	}
+	else if (m_pCurrentAnimation == m_pWalkRight)
+	{
+		m_pCurrentAnimation = m_pWalkRight;
+		pos += sf::Vector2f(0.1f, 0);
+	}
+	m_pCurrentAnimation->getSprite()->setPosition(pos);
 	m_pCurrentAnimation->update();
 }
 
