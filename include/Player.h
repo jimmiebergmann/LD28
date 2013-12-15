@@ -42,6 +42,10 @@ private:
 	};
 	eDirection m_eCurrentDirection;
 
+	sf::Clock m_attackClock;
+	sf::Time m_attackTime;
+	float m_time;
+
 	sf::FloatRect m_pWeaponCollision;
 
 	Animation* m_pIdle;

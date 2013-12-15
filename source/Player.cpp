@@ -1,11 +1,12 @@
 #include <Player.h>
-#include <MemoryLeak.h>
 #include <Stone.h>
 #include <Turret.h>
 #include <Trap.h>
-
+#include <iostream>
+#include <MemoryLeak.h>
 static float PLAYERSPEED = 0.6;
 static float ATTACKDAMAGE = 1;
+static float ATTACK_COOLDOWN = 0.3f;
 
 Player::Player(sf::Vector2f position):
 	m_Postition(position),
@@ -122,25 +123,34 @@ int Player::addDamage(int p_damage) {
 
 void Player::Attack(Game * p_pGame )
 {
-	if(m_eCurrentDirection == eDirection::Type_Up)
-	{
-		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, 32), sf::Vector2f(32, 32));
-	}
+	m_attackTime = m_attackClock.getElapsedTime();
+	m_time = m_attackTime.asSeconds();
 
-	else if(m_eCurrentDirection == eDirection::Type_Down)
+
+	if(m_eCurrentDirection == eDirection::Type_Up && m_time > ATTACK_COOLDOWN)
 	{
 		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, -32), sf::Vector2f(32, 32));
-
+		std::cout<< "Attacked" << std::endl;
+		m_attackClock.restart();
 	}
-	else if(m_eCurrentDirection == eDirection::Type_Right)
+
+	else if(m_eCurrentDirection == eDirection::Type_Down && m_time > ATTACK_COOLDOWN)
+	{
+		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(0, 32), sf::Vector2f(32, 32));
+		std::cout<< "Attacked" << std::endl;
+		m_attackClock.restart();
+	}
+	else if(m_eCurrentDirection == eDirection::Type_Right && m_time > ATTACK_COOLDOWN)
 	{
 		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(32, 0), sf::Vector2f(32, 32));
-
+		std::cout<< "Attacked" << std::endl;
+		m_attackClock.restart();
 	}
-	else if(m_eCurrentDirection == eDirection::Type_Left)
+	else if(m_eCurrentDirection == eDirection::Type_Left && m_time > ATTACK_COOLDOWN)
 	{
-		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(32, 0), sf::Vector2f(32, 32));
-
+		m_pWeaponCollision = sf::FloatRect(m_pCurrentAnimation->getSprite()->getPosition()+sf::Vector2f(-32, 0), sf::Vector2f(32, 32));
+		std::cout<< "Attacked" << std::endl;
+		m_attackClock.restart();
 	}
 	
 	const Game::EntityVector& vec1 = p_pGame->GetEntities();
