@@ -10,12 +10,12 @@ static float ATTACKDAMAGE = 1;
 static float ATTACK_COOLDOWN = 0.3f;
 
 Player::Player(sf::Vector2f position):
-	m_Postition(position),
+	m_Position(position),
 	m_pIdle(new Animation("Data/Textures/idle.png", 200, 2)),
-	m_pWalkUp(new Animation("Data/Textures/walk_up.png", 200, 2)),
-	m_pWalkDown(new Animation("Data/Textures/walk_down.png", 200, 2)),
-	m_pWalkLeft(new Animation("Data/Textures/walk_left.png", 200, 2)),
-	m_pWalkRight(new Animation("Data/Textures/walk_right.png", 200, 2)),
+	m_pWalkUp(new Animation("Data/Textures/idle.png", 200, 2)),
+	m_pWalkDown(new Animation("Data/Textures/idle.png", 200, 2)),
+	m_pWalkLeft(new Animation("Data/Textures/idle.png", 200, 2)),
+	m_pWalkRight(new Animation("Data/Textures/idle.png", 200, 2)),
 	m_pCurrentAnimation(m_pIdle)
 {
 	m_eCurrentDirection = eDirection::Type_Down;
@@ -49,45 +49,79 @@ Player::~Player()
 
 void Player::Update(Game * p_pGame, float p_deltaTime)
 {
-
 	AddObject(p_pGame);
+
 	m_pCurrentAnimation = m_pIdle;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		m_Postition.y-=PLAYERSPEED;
+		m_Position.y-=PLAYERSPEED;
 		m_pCurrentAnimation = m_pWalkUp;
 		m_eCurrentDirection = eDirection::Type_Up;
+	
+		int xt = m_Position.x/32;
+		int yt = m_Position.y/32;
+		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
+		{
+			m_Position.y+=PLAYERSPEED;
+		}
+		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
 	}
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		m_Postition.y+=PLAYERSPEED;
+		m_Position.y+=PLAYERSPEED;
 		m_pCurrentAnimation = m_pWalkDown;
 		m_eCurrentDirection = eDirection::Type_Down;
+
+
+		int xt = m_Position.x/32;
+		int yt = m_Position.y/32;
+		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
+		{
+			m_Position.y-=PLAYERSPEED;
+		}
+		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
 	}
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		m_Postition.x+=PLAYERSPEED;
+		m_Position.x+=PLAYERSPEED;
 		m_pCurrentAnimation = m_pWalkRight;
 		m_eCurrentDirection = eDirection::Type_Right;
+
+		int xt = m_Position.x/32;
+		int yt = m_Position.y/32;
+		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
+		{
+			m_Position.x-=PLAYERSPEED;
+		}
+		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
 	}
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_Postition.x-=PLAYERSPEED;
+		m_Position.x-=PLAYERSPEED;
 		m_pCurrentAnimation = m_pWalkLeft;
 		m_eCurrentDirection = eDirection::Type_Left;
+
+		int xt = m_Position.x/32;
+		int yt = m_Position.y/32;
+		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
+		{
+			m_Position.x+=PLAYERSPEED;
+		}
+		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
 	}
 
 
 	m_pCurrentAnimation->update( );
 
+	m_oldPosition = m_Position;
+	m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
 
-	m_pCurrentAnimation->getSprite( )->setPosition(m_Postition);
+	
 
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		Attack(p_pGame);
 				
@@ -107,14 +141,33 @@ void Player::Collide(Game * p_pGame, Entity * p_pOther)
 			p_pOther->addDamage( 1 );	// 1 == Set trap to active
 		}
 		break;
+	
+	case Type_Tree:
+
+		//m_pCurrentAnimation->getSprite( )->setPosition(m_oldPosition);
+		if(m_eCurrentDirection == eDirection::Type_Right)
+		{
+			m_Position.x-=PLAYERSPEED;
+		}
+		else if(m_eCurrentDirection == eDirection::Type_Left)
+		{
+			m_Position.x+=PLAYERSPEED;
+		}
+		else if(m_eCurrentDirection == eDirection::Type_Up)
+		{
+			m_Position.y+=PLAYERSPEED;
+		}
+		else if(m_eCurrentDirection == eDirection::Type_Down)
+		{
+			m_Position.y-=PLAYERSPEED;
+		}
+		break;
 
 	default:
 		break;
 	}
 
 }
-
-
 
 sf::Sprite* Player::GetSprite( ) const
 {
@@ -183,8 +236,8 @@ void Player::AddObject(Game * p_pGame)
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))
 	{
 
-		int x = m_Postition.x/32;
-		int y = m_Postition.y/32;
+		int x = m_Position.x/32;
+		int y = m_Position.y/32;
 		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
 		{
 			p_pGame->addEntity( new Stone(sf::Vector2f(x*32,y*32)));
@@ -194,8 +247,8 @@ void Player::AddObject(Game * p_pGame)
 	//add a turret
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))
 	{
-		int x = m_Postition.x/32;
-		int y = m_Postition.y/32;
+		int x = m_Position.x/32;
+		int y = m_Position.y/32;
 		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
 		{
 		p_pGame->addEntity( new Turret(sf::Vector2f(x*32,y*32)));
@@ -205,8 +258,8 @@ void Player::AddObject(Game * p_pGame)
 	//add a trap
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))
 	{
-		int x = m_Postition.x/32;
-		int y = m_Postition.y/32;
+		int x = m_Position.x/32;
+		int y = m_Position.y/32;
 		if(p_pGame->GetCollisionData(sf::Vector2u(x,y)) == false)
 		{
 		p_pGame->addEntity( new Trap(sf::Vector2f(x*32,y*32)));

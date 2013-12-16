@@ -134,7 +134,7 @@ bool GameImp::Load()
 			m_ppCollisionData[ i ][ j ] = false;
 		}
 	}
-	m_pPlayer = new Player(sf::Vector2f(200, 200));
+	m_pPlayer = new Player(sf::Vector2f(250, 200));
 	m_entitys.push_back(new Rabbit(sf::Vector2f(0, 0)));
 	m_entitys.push_back(new Stone(sf::Vector2f(5*32, 5*32)));
 	m_entitys.push_back(m_pPlayer);

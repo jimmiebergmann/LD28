@@ -31,7 +31,8 @@ private:
 
 	bool m_alive;
 	int m_health;
-	sf::Vector2f m_Postition;
+	sf::Vector2f m_Position;
+	sf::Vector2f m_oldPosition;
 
 	enum eDirection
 	{
