@@ -319,7 +319,24 @@ void GameImp::Render( )
 		sf::Sprite * pSprite = m_entitys[ i ]->GetSprite( );
 		pSprite->setColor( m_mapColor );
 		m_pRenderWindow->draw( *pSprite );
+
 	}
+
+	#ifndef NDEBUG
+
+		for( unsigned int i = 0; i < m_entitys.size( ); i++ )
+		{
+		
+			sf::Sprite * pSprite = m_entitys[ i ]->GetSprite( );
+			sf::RectangleShape rectangleShape(sf::Vector2f(pSprite->getGlobalBounds().width, pSprite->getGlobalBounds().height));
+			rectangleShape.setPosition(pSprite->getGlobalBounds().left, pSprite->getGlobalBounds().top);
+			rectangleShape.setFillColor( sf::Color::Transparent);
+			rectangleShape.setOutlineColor(sf::Color::White);
+			rectangleShape.setOutlineThickness(1.5f);
+			m_pRenderWindow->draw( rectangleShape );
+		}
+
+	#endif // !NDEBUG
 
 	m_pRenderWindow->display( );
 }

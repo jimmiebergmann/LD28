@@ -62,12 +62,10 @@ void Player::Update(Game * p_pGame, float p_deltaTime)
 		int yt = m_Position.y/32;
 		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
 		{
-			m_Position.y+=PLAYERSPEED;
+			//m_Position.y+=PLAYERSPEED;
 		}
 		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
-	}
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		m_Position.y+=PLAYERSPEED;
 		m_pCurrentAnimation = m_pWalkDown;
@@ -78,12 +76,10 @@ void Player::Update(Game * p_pGame, float p_deltaTime)
 		int yt = m_Position.y/32;
 		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
 		{
-			m_Position.y-=PLAYERSPEED;
+			//m_Position.y-=PLAYERSPEED;
 		}
 		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
-	}
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		m_Position.x+=PLAYERSPEED;
 		m_pCurrentAnimation = m_pWalkRight;
@@ -93,12 +89,10 @@ void Player::Update(Game * p_pGame, float p_deltaTime)
 		int yt = m_Position.y/32;
 		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
 		{
-			m_Position.x-=PLAYERSPEED;
+			//m_Position.x-=PLAYERSPEED;
 		}
 		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
-	}
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		m_Position.x-=PLAYERSPEED;
 		m_pCurrentAnimation = m_pWalkLeft;
@@ -108,7 +102,7 @@ void Player::Update(Game * p_pGame, float p_deltaTime)
 		int yt = m_Position.y/32;
 		if(p_pGame->GetCollisionData(sf::Vector2u(xt,yt)) == true)
 		{
-			m_Position.x+=PLAYERSPEED;
+			//m_Position.x+=PLAYERSPEED;
 		}
 		m_pCurrentAnimation->getSprite( )->setPosition(m_Position);
 	}
@@ -141,10 +135,7 @@ void Player::Collide(Game * p_pGame, Entity * p_pOther)
 			p_pOther->addDamage( 1 );	// 1 == Set trap to active
 		}
 		break;
-	
-	case Type_Tree:
-
-		//m_pCurrentAnimation->getSprite( )->setPosition(m_oldPosition);
+	case Type_Tree:	case Type_Stone: case Type_Tent: case Type_Turret:
 		if(m_eCurrentDirection == eDirection::Type_Right)
 		{
 			m_Position.x-=PLAYERSPEED;

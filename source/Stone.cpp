@@ -25,7 +25,15 @@ void Stone::Update( Game * p_pGame, float p_deltaTime )
 
 void Stone::Collide( Game * p_pGame, Entity * p_pOther)
 {
-	//Collide
+	switch (p_pOther->GetType())
+	{
+	case Type_Player:
+		p_pOther->Collide(p_pGame, this);
+		break;
+	default:
+		break;
+	}
+	
 }
 
 sf::Sprite * Stone::GetSprite( ) const

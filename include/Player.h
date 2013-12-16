@@ -29,6 +29,8 @@ public:
 
 private:
 
+	void InternalCollide();
+
 	bool m_alive;
 	int m_health;
 	sf::Vector2f m_Position;
