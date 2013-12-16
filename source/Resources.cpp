@@ -107,7 +107,9 @@ bool Resources::Load()
 	succ = LoadTextures("Data/Textures/walk_right.png");
 	succ = LoadTextures("Data/Textures/Tent.png");
 	succ = LoadTextures("Data/Textures/Stone.png");	
-	succ = LoadTextures("Data/Textures/Trap.png");	
+	succ = LoadTextures("Data/Textures/Trap.png");
+	succ = LoadTextures("Data/Textures/ClosedTrap.png");
+	succ = LoadTextures("Data/Textures/ActiveTrap.png");
 	succ = LoadTextures("Data/Textures/pine.png");
 	succ = LoadTextures("Data/Textures/Turret.png");	
 	succ = LoadTextures("Data/Textures/TurretBullet.png");
