@@ -26,6 +26,10 @@ public:
 private:
 
 	sf::Sprite * m_pSprite;
+
+	sf::Texture * ActiveTrap;
+	sf::Texture * CloseTrap;
+
 	int m_health;
 	bool m_activeTrap;
 	bool m_alive;

@@ -5,7 +5,7 @@
 #include <MemoryLeak.h>
 
 Tent::Tent(const sf::Vector2f p_position) :
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Tent.png"))) 
+	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Tent.png")))
 {
 	m_pSprite->setPosition(p_position);
 	m_pSprite->scale( 2.0f, 2.0f);

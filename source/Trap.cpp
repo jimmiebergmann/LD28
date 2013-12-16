@@ -5,10 +5,13 @@
 #include <MemoryLeak.h>
 
 Trap::Trap(const sf::Vector2f p_position) :
-	m_pSprite(new sf::Sprite(*Resources::GetTexture("Data/Textures/Trap.png"))),
+	ActiveTrap(Resources::GetTexture("Data/Textures/ActiveTrap.png")),
+	CloseTrap(Resources::GetTexture("Data/Textures/ClosedTrap.png")),
+	m_pSprite(new sf::Sprite),
 	m_alive(true),
 	m_activeTrap(true)
 {
+	m_pSprite->setTexture(*ActiveTrap);
 	m_pSprite->setPosition(p_position);
 }
 
@@ -21,11 +24,11 @@ void Trap:: Update(Game * p_pGame, float p_deltaTime)
 {
 	if(m_activeTrap == true)
 	{
-		m_pSprite->setColor(sf::Color(255, 255, 255, 255));
+		m_pSprite->setTexture(*ActiveTrap);
 	}
 	else if(m_activeTrap == false)
 	{
-		m_pSprite->setColor(sf::Color(255, 255, 255, 100));
+		m_pSprite->setTexture(*CloseTrap);
 	}
 
 

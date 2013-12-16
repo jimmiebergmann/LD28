@@ -25,7 +25,9 @@ public:
 private:
 
 	sf::Sprite * m_pSprite;
-	
+	sf::Texture * ActiveTrap;
+	sf::Texture * CloseTrap;
+
 };
 
 
